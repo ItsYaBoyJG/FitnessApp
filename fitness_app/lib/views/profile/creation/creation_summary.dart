@@ -1,6 +1,6 @@
-import 'package:fitness_app/calculations.dart';
+import 'package:fitness_app/models/calculations/calculations.dart';
 import 'package:fitness_app/controllers/providers/state_providers.dart';
-import 'package:fitness_app/widgets/creation/creation_summary.dart';
+import 'package:fitness_app/models/widgets/creation/creation_summary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

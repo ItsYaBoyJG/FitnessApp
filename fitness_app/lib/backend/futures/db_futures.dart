@@ -55,4 +55,15 @@ class DbFutures {
   Future<DocumentSnapshot<Map<String, dynamic>>> getDailyMacros(String id) {
     return _firebaseFirestore.collection('userDailyMacroTotals').doc(id).get();
   }
+
+  Future<QuerySnapshot<Map<String, dynamic>>> getWorkoutHistory(
+      String id, DateTime weekStartDate) {
+    String date =
+        '${weekStartDate.year}-${weekStartDate.month}-${weekStartDate.day}';
+    return _firebaseFirestore
+        .collection('workoutHistory')
+        .doc(id)
+        .collection(date)
+        .get();
+  }
 }

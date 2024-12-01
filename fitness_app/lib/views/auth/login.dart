@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_app/backend/auth/user_auth.dart';
-import 'package:fitness_app/widgets/buttons/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -21,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
 
   String errorMessage = '';
   String emailErrorMessage = 'Please enter a valid email';
+  String passwordErrorMessage = 'Password cannot be empty';
 
   @override
   void initState() {
@@ -89,6 +89,12 @@ class _LoginPageState extends State<LoginPage> {
                     keyboardType: TextInputType.text,
                     controller: passwordController,
                     textInputAction: TextInputAction.done,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return passwordErrorMessage;
+                      }
+                      return null;
+                    },
                     decoration: InputDecoration(
                       hintText: 'Password',
                       contentPadding:

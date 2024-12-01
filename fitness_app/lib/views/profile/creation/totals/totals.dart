@@ -1,15 +1,12 @@
 import 'package:fitness_app/backend/auth/user_auth.dart';
 import 'package:fitness_app/backend/writes/write_to_db.dart';
-import 'package:fitness_app/controllers/providers/future_providers.dart';
 import 'package:fitness_app/controllers/providers/state_providers.dart';
-import 'package:fitness_app/controllers/providers/stream_providers.dart';
 import 'package:fitness_app/models/data/user.dart';
-import 'package:fitness_app/routes.dart';
-import 'package:fitness_app/widgets/creation/values/calories.dart';
-import 'package:fitness_app/widgets/creation/values/carbs.dart';
-import 'package:fitness_app/widgets/creation/values/fat.dart';
-import 'package:fitness_app/widgets/creation/values/protein.dart';
-import 'package:fitness_app/widgets/buttons/app_button.dart';
+import 'package:fitness_app/models/widgets/creation/values/calories.dart';
+import 'package:fitness_app/models/widgets/creation/values/carbs.dart';
+import 'package:fitness_app/models/widgets/creation/values/fat.dart';
+import 'package:fitness_app/models/widgets/creation/values/protein.dart';
+import 'package:fitness_app/models/widgets/buttons/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -97,7 +94,7 @@ class _DailyTotalsSumPageState extends ConsumerState<DailyTotalsSumPage> {
               _writeToDb.saveDailyMacrosTotals(
                   _userAuth.getUserId(), calories, protein, fat, carbs);
               _writeToDb.saveUserData(UserProfile(
-                  id: _userAuth.getUserId(),
+                  uid: _userAuth.getUserId(),
                   name: name,
                   age: age,
                   gender: gender,
@@ -108,7 +105,7 @@ class _DailyTotalsSumPageState extends ConsumerState<DailyTotalsSumPage> {
                   goalReason: goalReason,
                   createdAt: DateTime.now()));
 
-              ref.invalidate(userProfileData);
+              // ref.invalidate(userProfileData);
               Future.delayed(const Duration(milliseconds: 200));
               context.go('/');
             },

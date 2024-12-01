@@ -1,7 +1,7 @@
 import 'package:fitness_app/controllers/providers/state_providers.dart';
-import 'package:fitness_app/widgets/buttons/app_button.dart';
-import 'package:fitness_app/widgets/creation/height_val_container.dart';
-import 'package:fitness_app/widgets/creation/weight_val_container.dart';
+import 'package:fitness_app/models/widgets/buttons/app_button.dart';
+import 'package:fitness_app/models/widgets/creation/height_val_container.dart';
+import 'package:fitness_app/models/widgets/creation/weight_val_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

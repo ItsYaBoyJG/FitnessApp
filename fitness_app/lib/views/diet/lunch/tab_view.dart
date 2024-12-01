@@ -2,7 +2,6 @@ import 'package:fitness_app/backend/auth/user_auth.dart';
 import 'package:fitness_app/controllers/providers/stream_providers.dart';
 import 'package:fitness_app/models/equatables/lunch.dart';
 import 'package:fitness_app/views/diet/add_item/additempage.dart';
-import 'package:fitness_app/views/diet/items_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_app/controllers/providers/state_providers.dart';
 import 'package:fitness_app/models/lists/user_info_list.dart';
-import 'package:fitness_app/widgets/creation/data_list_item.dart';
-import 'package:fitness_app/widgets/creation/profile_data_list.dart';
+import 'package:fitness_app/models/widgets/creation/data_list_item.dart';
+import 'package:fitness_app/models/widgets/creation/profile_data_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 class CircleBadge extends StatelessWidget {
-  final Color color;
-  final String title, subtitle;
-
   const CircleBadge(
       {super.key,
       required this.color,
       required this.title,
       required this.subtitle});
 
+  final Color color;
+  final String title, subtitle;
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: <Widget>[
+      children: [
         Container(
           width: 45.0,
           height: 60.0,
@@ -23,7 +23,7 @@ class CircleBadge extends StatelessWidget {
             color: color,
           ),
           child: CustomPaint(
-            size: Size(50, 60),
+            size: const Size(50, 60),
             painter: TriangleClipper(),
           ),
         ),
@@ -32,11 +32,11 @@ class CircleBadge extends StatelessWidget {
             shape: BoxShape.circle,
             color: color,
             border: Border.all(
-              color: Color.fromRGBO(231, 241, 248, 1.0),
+              color: const Color.fromRGBO(231, 241, 248, 1.0),
               width: 3.0,
             ),
           ),
-          padding: EdgeInsets.all(6.0),
+          padding: const EdgeInsets.all(6.0),
           transform: Matrix4.translationValues(0.0, -30.0, 0.0),
           height: 110.0,
           width: 120.0,
@@ -53,11 +53,11 @@ class CircleBadge extends StatelessWidget {
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children: [
                 Text(
                   title,
                   style: TextStyle(
-                    color: (color != Color.fromRGBO(255, 255, 255, 1.0))
+                    color: (color != const Color.fromRGBO(255, 255, 255, 1.0))
                         ? Colors.white
                         : Colors.blue[100],
                     fontWeight: FontWeight.w900,
@@ -67,7 +67,7 @@ class CircleBadge extends StatelessWidget {
                 Text(
                   subtitle,
                   style: TextStyle(
-                    color: (color != Color.fromRGBO(255, 255, 255, 1.0))
+                    color: (color != const Color.fromRGBO(255, 255, 255, 1.0))
                         ? Colors.white
                         : Colors.blue[100],
                     fontSize: 14.0,
@@ -87,7 +87,7 @@ class TriangleClipper extends CustomPainter {
 
   TriangleClipper() {
     _paint = Paint()
-      ..color = Color.fromRGBO(231, 241, 248, 1.0)
+      ..color = const Color.fromRGBO(231, 241, 248, 1.0)
       ..style = PaintingStyle.fill;
   }
 

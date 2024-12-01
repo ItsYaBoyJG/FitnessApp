@@ -1,4 +1,4 @@
-import 'package:fitness_app/widgets/main_program_card.dart';
+import 'package:fitness_app/models/widgets/main_program_card.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {

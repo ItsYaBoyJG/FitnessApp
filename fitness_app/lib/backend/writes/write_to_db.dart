@@ -5,34 +5,34 @@ class WriteToDb {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
   void saveUserData(UserProfile user) {
-    _firebaseFirestore.collection('usersData').doc(user.id).set(user.toJson());
+    _firebaseFirestore.collection('usersData').doc(user.uid).set(user.toJson());
   }
 
-  void saveUser(String id) {
-    _firebaseFirestore.collection('users').doc(id);
+  void saveUser(String uid) {
+    _firebaseFirestore.collection('users').doc(uid);
   }
 
   void updateUserData(UserProfile user) {
-    _firebaseFirestore.collection('users').doc(user.id).update(user.toJson());
+    _firebaseFirestore.collection('users').doc(user.uid).update(user.toJson());
   }
 
-  void deleteUserData(String id) {
-    _firebaseFirestore.collection('users').doc(id).delete();
+  void deleteUserData(String uid) {
+    _firebaseFirestore.collection('users').doc(uid).delete();
   }
 
-  void addUserToFriendsList(String id, String name) {
+  void addUserToFriendsList(String uid, String name) {
     _firebaseFirestore
         .collection('friends')
-        .doc(id)
+        .doc(uid)
         .collection('friends')
         .doc(name)
         .set({});
   }
 
-  void addUserToFollowingList(String id, String name) {
+  void addUserToFollowingList(String uid, String name) {
     _firebaseFirestore
         .collection('friends')
-        .doc(id)
+        .doc(uid)
         .collection('following')
         .doc(name)
         .set({});
@@ -128,10 +128,26 @@ class WriteToDb {
     String collDate = '${date.year}-${date.month}-${date.day}';
     String m = '${meal}items';
     _firebaseFirestore
-        .collection('snackItems')
+        .collection(m)
         .doc(uid)
         .collection(collDate)
         .doc()
         .set({'name': name, 'count': count, 'calories': calories});
+  }
+
+  void saveExerciseData(String uid, DateTime dateTime, double caloriesBurned,
+      double caloriesGoal, double currentWeight, double goalWeight) {
+    String date = '${dateTime.year}-${dateTime.month}-${dateTime.day}';
+    _firebaseFirestore
+        .collection('exerciseData')
+        .doc(uid)
+        .collection(date)
+        .doc()
+        .set({
+      'caloriesBurned': caloriesBurned,
+      'caloriesGoal': caloriesGoal,
+      'currentWeight': currentWeight,
+      'goalWeight': goalWeight,
+    });
   }
 }

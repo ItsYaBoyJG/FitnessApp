@@ -15,7 +15,7 @@ class DailyTip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
+      children: [
         Container(
           width: MediaQuery.of(context).size.width,
           height: 200.0,

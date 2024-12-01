@@ -1,13 +1,9 @@
-import 'package:fitness_app/models/data/workout_plan.dart';
-import 'package:fitness_app/widgets/header.dart';
-import 'package:fitness_app/widgets/daily_tip.dart';
-import 'package:fitness_app/widgets/image_card_with_basic_footer.dart';
-import 'package:fitness_app/widgets/image_card_with_internal.dart';
-import 'package:fitness_app/widgets/main_program_card.dart';
-import 'package:fitness_app/widgets/section.dart';
-import 'package:fitness_app/widgets/account/user_photo.dart';
-import 'package:fitness_app/widgets/user_tip.dart';
-import 'package:fitness_app/views/activity/activity_detail.dart';
+import 'package:fitness_app/models/widgets/header.dart';
+import 'package:fitness_app/models/widgets/image_card_with_internal.dart';
+import 'package:fitness_app/models/widgets/main_program_card.dart';
+import 'package:fitness_app/models/widgets/section.dart';
+import 'package:fitness_app/models/widgets/account/user_photo.dart';
+import 'package:fitness_app/models/widgets/user_tip.dart';
 import 'package:flutter/material.dart';
 
 class Programs extends StatelessWidget {

@@ -1,6 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fitness_app/theme.dart';
+import 'package:fitness_app/backend/auth/user_auth.dart';
+import 'package:fitness_app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,6 +11,7 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
+  final UserAuth _userAuth = UserAuth();
   // global key
   final formKey = GlobalKey<FormState>();
   //text fields
@@ -22,31 +23,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final FocusNode passwordFocus = FocusNode();
   final FocusNode confirmPasswordFocus = FocusNode();
 
-  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-
   // error message
   late String errorMessage = '';
-
-  verifyEmail() async {
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null && !user.emailVerified) {
-      await user.sendEmailVerification();
-    }
-  }
-
-  processError(FirebaseAuthException error) {
-    //   if (error.code == 'ERROR_EMAIL_ALREADY_IN_USE') {
-    //    return Text("The email already has an account linked to it.");
-    //   }
-  }
-
-  Future<bool> userEmailCheck() async {
-    final result = await FirebaseFirestore.instance
-        .collection('users')
-        .where('email', isEqualTo: emailTextController.text)
-        .get();
-    return result.docs.isEmpty;
-  }
 
   @override
   void initState() {
@@ -154,20 +132,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
               padding: const EdgeInsets.only(top: 10.0),
               child: ElevatedButton(
                 onPressed: () async {
-                  /*   final valid = await userEmailCheck();
-                      if (!valid) {
-                        return Future.error(
-                            'A user with that email already exists');
-                      } else if (formKey.currentState!.validate()) { */
-                  try {
-                    firebaseAuth.createUserWithEmailAndPassword(
-                        email: emailTextController.text,
-                        password: passwordTextController.text);
-                  } on FirebaseAuthException catch (error) {
-                    errorMessage = error.code;
+                  if (formKey.currentState!.validate()) {
+                    try {
+                      _userAuth.registerUser(emailTextController.text,
+                          passwordTextController.text);
+                    } on FirebaseAuthException catch (error) {
+                      errorMessage = error.code;
+                    }
                   }
-                  //   }
-                  //verifyEmail();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 210, 217, 131),

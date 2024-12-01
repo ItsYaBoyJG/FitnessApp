@@ -1,4 +1,4 @@
-import 'package:fitness_app/widgets/buttons/app_button.dart';
+import 'package:fitness_app/models/widgets/buttons/app_button.dart';
 import 'package:flutter/material.dart';
 
 class ProfileDataList extends StatelessWidget {

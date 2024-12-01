@@ -4,8 +4,8 @@ import 'package:fitness_app/views/diet/breakfast/tab_view.dart';
 import 'package:fitness_app/views/diet/dinner/tab_view.dart';
 import 'package:fitness_app/views/diet/lunch/tab_view.dart';
 import 'package:fitness_app/views/diet/snack/tab_view.dart';
-import 'package:fitness_app/widgets/calendar/calendar.dart';
-import 'package:fitness_app/widgets/header.dart';
+import 'package:fitness_app/models/widgets/calendar/calendar.dart';
+import 'package:fitness_app/models/widgets/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -27,7 +27,7 @@ class _DietTabState extends ConsumerState<DietTab> {
 
   @override
   Widget build(BuildContext context) {
-    final macros = ref.watch(userDailyMacroTotals(_auth.getUserId()));
+    final macros = ref.watch(userDailyMacroTotalsProvider(_auth.getUserId()));
 
     return macros.when(data: (data) {
       if (data.exists && data.data() != null) {

@@ -1,8 +1,15 @@
 import 'dart:io';
 
+import 'package:fitness_app/backend/auth/user_auth.dart';
+import 'package:fitness_app/controllers/providers/future_providers.dart';
+import 'package:fitness_app/models/equatables/exercise.dart';
+import 'package:fitness_app/models/widgets/buttons/app_button.dart';
 import 'package:fitness_app/utils/health_data_types.dart';
-import 'package:fitness_app/widgets/header.dart';
-import 'package:fitness_app/widgets/circle_badge.dart';
+import 'package:fitness_app/models/widgets/header.dart';
+import 'package:fitness_app/models/widgets/circle_badge.dart';
+import 'package:fitness_app/views/results/achievements.dart';
+import 'package:fitness_app/views/results/calories_burned.dart';
+import 'package:fitness_app/views/results/goal_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,6 +26,8 @@ class ResultsTab extends ConsumerStatefulWidget {
 }
 
 class _ResultsTabState extends ConsumerState<ResultsTab> {
+  final UserAuth _userAuth = UserAuth();
+
   final HealthDataTypes _healthDataTypes = HealthDataTypes();
   List<HealthDataPoint> _healthDataList = [];
   List<HealthDataType> _types = [
@@ -343,284 +352,93 @@ class _ResultsTabState extends ConsumerState<ResultsTab> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        padding: const EdgeInsets.only(top: 20.0),
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Header(
-                title: 'Results',
-                rightSide: Container(),
-              ),
-              Container(
-                color: Colors.white,
-                padding: const EdgeInsets.fromLTRB(20.0, 25.0, 20.0, 35.0),
-                child: Container(
-                  padding: const EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                    color: const Color.fromRGBO(241, 227, 255, 1.0),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Body Progress',
-                        style: TextStyle(
-                          color: Color.fromRGBO(190, 130, 255, 1.0),
-                          fontSize: 18.0,
-                        ),
-                      ),
-                      IconButton(
-                          onPressed: () {
-                            print('camera pressed');
-                            addData();
-                          },
-                          icon: const Icon(Icons.camera_alt))
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 25.0,
-                  horizontal: 20.0,
-                ),
-                width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
-                  color: Color.fromRGBO(231, 241, 248, 1.0),
-                ),
+    final userProfileData =
+        ref.watch(userProfileDataProvider(_userAuth.getUserId()));
+    final exerciseData = ref.watch(userExerciseDataProvider(
+        ExerciseEquatable(id: _userAuth.getUserId(), date: DateTime.now())));
+    return exerciseData.when(
+      data: (data) {
+        if (data.docs.isNotEmpty) {
+          Map<String, dynamic> eData = data.docs as Map<String, dynamic>;
+          return SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: SafeArea(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const Text(
-                      'Achievements',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.grey,
-                      ),
+                    Header(
+                      title: 'Results',
+                      rightSide: Container(),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 40.0),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CircleBadge(
-                            color: Color.fromRGBO(190, 130, 255, 1.0),
-                            title: '1st',
-                            subtitle: 'Workout',
-                          ),
-                          CircleBadge(
-                            color: Color.fromRGBO(75, 142, 255, 1.0),
-                            title: '1000',
-                            subtitle: 'kCal',
-                          ),
-                          CircleBadge(
-                            color: Color.fromRGBO(255, 255, 255, 1.0),
-                            title: '6000',
-                            subtitle: 'kCal',
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Text(
-                      'You\'ve burned',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 114, 114, 114),
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 15.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            '480 kCal',
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.grey[500],
+                    /* Container(
+                      color: Colors.white,
+                      padding:
+                          const EdgeInsets.fromLTRB(20.0, 25.0, 20.0, 35.0),
+                      child: Container(
+                        padding: const EdgeInsets.all(20.0),
+                        decoration: BoxDecoration(
+                          color: const Color.fromRGBO(241, 227, 255, 1.0),
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Body Progress',
+                              style: TextStyle(
+                                color: Color.fromRGBO(190, 130, 255, 1.0),
+                                fontSize: 18.0,
+                              ),
                             ),
-                          ),
-                          Text(
-                            '6000 kCal',
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.grey[500],
-                            ),
-                          ),
-                        ],
+                            IconButton(
+                                onPressed: () {
+                                  print('camera pressed');
+                                  addData();
+                                },
+                                icon: const Icon(Icons.camera_alt))
+                          ],
+                        ),
                       ),
+                    ), */
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 25.0,
+                        horizontal: 20.0,
+                      ),
+                      width: MediaQuery.of(context).size.width,
+                      decoration: const BoxDecoration(
+                        color: Color.fromRGBO(231, 241, 248, 1.0),
+                      ),
+                      child: userProfileData.when(data: (data) {
+                        return Column(
+                          children: [
+                            //   Achievements( firstCalGoal: firstCalGoal, firstCalGoalTotal: firstCalGoalTotal, secondCalGoal: secondCalGoal, secondCalGoalTotal: secondCalGoalTotal),
+                            CaloriesBurned(
+                                caloriesBurned: eData['caloriesBurned'],
+                                calorieGoal: eData['caloriesGoal']),
+                          ],
+                        );
+                      }, error: (error, stackTrace) {
+                        print(error);
+                        return Center(
+                          child: Text(' error'),
+                        );
+                      }, loading: () {
+                        return const CircularProgressIndicator.adaptive();
+                      }),
                     ),
                     Container(
-                        child: FAProgressBar(
-                      currentValue: 1500,
-                      maxValue: 6000,
-                    )),
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(
-                  top: 55.0,
-                  left: 20.0,
-                  right: 20.0,
-                ),
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Weight Progress',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.grey,
+                      padding: const EdgeInsets.only(
+                        top: 55.0,
+                        left: 20.0,
+                        right: 20.0,
                       ),
-                    ),
-                    Container(
-                        height: 250.0,
-                        width: MediaQuery.of(context).size.width - 40.0,
-                        margin: const EdgeInsets.only(bottom: 10.0),
-                        //TODO: replace this with a custom chart or from diff lib
-                        child: Container()
-
-                        /* BezierChart(
-                        fromDate: DateTime.now().subtract(Duration(days: 7)),
-                        toDate: DateTime.now(),
-                        bezierChartScale: BezierChartScale.weekly,
-                        series: [
-                          BezierLine(
-                            lineColor: Color.fromRGBO(241, 227, 255, 1.0),
-                            lineStrokeWidth: 8.0,
-                            data: [
-                              DataPoint(
-                                  value: 45,
-                                  xAxis: DateTime.now()
-                                      .subtract(Duration(days: 7))),
-                              DataPoint(
-                                  value: 80,
-                                  xAxis: DateTime.now()
-                                      .subtract(Duration(days: 5))),
-                              DataPoint(
-                                  value: 55,
-                                  xAxis: DateTime.now()
-                                      .subtract(Duration(days: 3))),
-                              DataPoint(value: 100, xAxis: DateTime.now())
-                            ],
-                          ),
-                        ],
-                        config: BezierChartConfig(
-                            displayDataPointWhenNoValue: false,
-                            verticalIndicatorFixedPosition: false,
-                            showVerticalIndicator: true,
-                            showDataPoints: true,
-                            footerHeight: 45.0,
-                            xAxisTextStyle: TextStyle(color: Colors.blueGrey),
-                            startYAxisFromNonZeroValue: true,
-                            backgroundColor: Colors.white,
-                            displayYAxis: true),
-                      ), */
-                        ),
-                    Row(
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.55,
-                          height: MediaQuery.of(context).size.height * 0.15,
-                          margin: const EdgeInsets.only(right: 10.0),
-                          padding: const EdgeInsets.all(15.0),
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(231, 241, 255, 1.0),
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.only(right: 35.0),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Starting Weight',
-                                      style: TextStyle(
-                                        fontSize: 14.0,
-                                        color: Colors.blueGrey[200],
-                                      ),
-                                    ),
-                                    Text(
-                                      '56 Kg',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: Colors.black54,
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Current',
-                                      style: TextStyle(
-                                        fontSize: 14.0,
-                                        color: Colors.blueGrey[200],
-                                      ),
-                                    ),
-                                    Text(
-                                      '13 Kg',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        color: Colors.black54,
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.15,
-                          width: MediaQuery.of(context).size.width * 0.33,
-                          padding: const EdgeInsets.all(25.0),
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(241, 227, 255, 1.0),
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Goal',
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  color: Colors.blueGrey[200],
-                                ),
-                              ),
-                              const Text(
-                                'Add +',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Color.fromRGBO(190, 129, 255, 1.0),
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    /*   Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          /*   Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 45.0,
                         horizontal: 30.0,
@@ -634,34 +452,45 @@ class _ResultsTabState extends ConsumerState<ResultsTab> {
                         ),
                       ),
                     ),*/
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(25.0),
-                      width: MediaQuery.of(context).size.width - 40.0,
-                      margin: const EdgeInsets.only(bottom: 30.0),
-                      decoration: BoxDecoration(
-                        color: const Color.fromRGBO(241, 227, 255, 1.0),
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: const Text(
-                        'Enter today\'s weight',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color.fromRGBO(190, 130, 255, 1.0),
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w900,
-                        ),
+                          SizedBox(
+                            height: 50,
+                          ),
+                          GoalContainer()
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
+            ),
+          );
+        } else {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.50,
+            width: MediaQuery.of(context).size.width - 20,
+            decoration:
+                BoxDecoration(borderRadius: BorderRadius.circular(14.0)),
+            child: Column(
+              children: [
+                const Text(
+                    'It looks like you do not have any information that would '
+                    'listed on this page. You can go create it, however.'),
+                AppButton(
+                    onPressed: () {
+                      //TODO: add navigation to goal page
+                    },
+                    text: 'Set a goal')
+              ],
+            ),
+          );
+        }
+      },
+      error: (error, stackTrace) {
+        return Text('error');
+      },
+      loading: () {
+        return const CircularProgressIndicator.adaptive();
+      },
     );
   }
 }

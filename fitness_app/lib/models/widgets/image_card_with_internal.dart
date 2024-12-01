@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ImageCardWithInternal extends StatelessWidget {
-  final String image, title, duration;
-
   const ImageCardWithInternal(
       {super.key,
       required this.image,
       required this.title,
       required this.duration});
+
+  final String image, title, duration;
 
   @override
   Widget build(BuildContext context) {

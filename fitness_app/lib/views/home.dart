@@ -5,7 +5,6 @@ import 'package:fitness_app/views/results/results_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:health/health.dart';
 
 class Home extends ConsumerStatefulWidget {
   const Home({super.key});
@@ -25,7 +24,7 @@ class _HomeState extends ConsumerState<Home> {
   @override
   Widget build(BuildContext context) {
     final userId = ref.watch(userIdFutureProvider);
-    final userData = ref.watch(userDailyMacroTotals(userId.value!));
+    final userData = ref.watch(userDailyMacroTotalsProvider(userId.value!));
 
     return userData.when(data: (data) {
       if (data.exists == true) {

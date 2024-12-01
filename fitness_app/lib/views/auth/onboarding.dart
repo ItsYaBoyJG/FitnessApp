@@ -1,7 +1,6 @@
 import 'package:fitness_app/views/auth/forgot_password.dart';
 import 'package:fitness_app/views/auth/login.dart';
 import 'package:fitness_app/views/auth/register.dart';
-import 'package:fitness_app/views/auth/welcome.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatefulWidget {

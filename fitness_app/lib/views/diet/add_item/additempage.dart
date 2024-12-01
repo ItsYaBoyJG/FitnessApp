@@ -1,7 +1,7 @@
 import 'package:fitness_app/backend/auth/user_auth.dart';
 import 'package:fitness_app/backend/writes/write_to_db.dart';
 import 'package:fitness_app/controllers/http_calls/off_functions.dart';
-import 'package:fitness_app/widgets/search/search_bar.dart';
+import 'package:fitness_app/models/widgets/search/search_bar.dart';
 import 'package:fitness_app/views/diet/add_item/search_list.dart';
 import 'package:flutter/material.dart';
 import 'package:openfoodfacts/openfoodfacts.dart';

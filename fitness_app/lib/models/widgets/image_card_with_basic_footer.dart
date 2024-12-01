@@ -1,18 +1,17 @@
 import 'package:fitness_app/models/data/workout_plan.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ImageCardWithBasicFooter extends StatelessWidget {
-  final WorkoutPlan exercise;
-  final String tag;
-  final double imageWidth;
-
   const ImageCardWithBasicFooter({
     super.key,
     required this.exercise,
     required this.tag,
     required this.imageWidth,
   });
+
+  final WorkoutPlan exercise;
+  final String tag;
+  final double imageWidth;
 
   @override
   Widget build(BuildContext context) {

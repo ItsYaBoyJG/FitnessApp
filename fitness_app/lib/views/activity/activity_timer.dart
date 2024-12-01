@@ -21,15 +21,15 @@ class ActivityTimer extends StatelessWidget {
 }
 
 class Portrait extends StatelessWidget {
-  final String image, tag;
+  const Portrait({super.key, required this.image, required this.tag});
 
-  Portrait({super.key, required this.image, required this.tag});
+  final String image, tag;
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Column(
-      children: <Widget>[
+      children: [
         Stack(
           children: <Widget>[
             Hero(

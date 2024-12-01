@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'recipe.g.dart';
+
+@JsonSerializable()
 class Recipe {
   final String id;
   final String title;

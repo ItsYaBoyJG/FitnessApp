@@ -12,12 +12,9 @@ class AddProfileInfo extends ConsumerStatefulWidget {
 }
 
 class _AddProfileInfoState extends ConsumerState<AddProfileInfo> {
-  final _key = GlobalKey<FormState>();
-
-  TextEditingController bfController = TextEditingController();
-
-  final PageController _pageController = PageController();
-
+  //TODO: add more of a add info start page rather than just having it
+  // direct users directly to age and gender container. Also add the option
+  // to add Phone's Health Data
   @override
   Widget build(BuildContext context) {
     return const AgeGenderContainer();

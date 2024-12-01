@@ -1,5 +1,5 @@
 import 'package:fitness_app/models/data/workout_plan.dart';
-import 'package:fitness_app/widgets/next_step.dart';
+import 'package:fitness_app/models/widgets/next_step.dart';
 import 'package:fitness_app/views/activity/activity_timer.dart';
 import 'package:flutter/material.dart';
 
@@ -19,12 +19,12 @@ class _ActivityDetailState extends State<ActivityDetail> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[
+          children: [
             Stack(
-              children: <Widget>[
+              children: [
                 Hero(
                   tag: widget.tag,
-                  child: Container(
+                  child: SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: 270,
                     child: Image.asset(
@@ -38,56 +38,54 @@ class _ActivityDetailState extends State<ActivityDetail> {
                   right: 20,
                   child: GestureDetector(
                     child: Container(
-                      padding: EdgeInsets.all(4.0),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(4.0),
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: Color.fromRGBO(0, 0, 0, 0.7),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.close,
                         color: Colors.white,
                         size: 30.0,
                       ),
                     ),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
+                    onTap: () {},
                   ),
                 ),
               ],
             ),
             Stack(
-              children: <Widget>[
+              children: [
                 Container(
-                  padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 20.0),
+                  padding: const EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 20.0),
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+                    children: [
                       Text(
                         widget.exercise.title,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 22.0,
                           color: Colors.blueGrey,
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.all(20.0),
-                        margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                        padding: const EdgeInsets.all(20.0),
+                        margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
                         height: 90.0,
                         decoration: BoxDecoration(
-                          color: Color.fromRGBO(231, 241, 255, 1.0),
+                          color: const Color.fromRGBO(231, 241, 255, 1.0),
                           borderRadius: BorderRadius.circular(15.0),
                         ),
                         child: Row(
-                          children: <Widget>[
+                          children: [
                             Container(
-                              margin: EdgeInsets.only(right: 55.0),
+                              margin: const EdgeInsets.only(right: 55.0),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
+                                children: [
                                   Text(
                                     'Time',
                                     style: TextStyle(
@@ -96,7 +94,7 @@ class _ActivityDetailState extends State<ActivityDetail> {
                                   ),
                                   Text(
                                     '${widget.exercise.duration}',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 18.0,
                                         color: Colors.lightBlue,
                                         fontWeight: FontWeight.w900),
@@ -105,12 +103,12 @@ class _ActivityDetailState extends State<ActivityDetail> {
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.only(right: 45.0),
+                              margin: const EdgeInsets.only(right: 45.0),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
+                                children: [
                                   Text(
                                     'Intensity',
                                     style: TextStyle(
@@ -120,7 +118,7 @@ class _ActivityDetailState extends State<ActivityDetail> {
                                   ),
                                   Text(
                                     widget.exercise.description,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 18.0,
                                       color: Colors.lightBlue,
                                       fontWeight: FontWeight.w900,
@@ -133,9 +131,9 @@ class _ActivityDetailState extends State<ActivityDetail> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 15.0),
-                        child: Column(
-                          children: <Widget>[
+                        margin: const EdgeInsets.only(top: 15.0),
+                        child: const Column(
+                          children: [
                             NextStep(
                               image: 'assets/images/image005.jpg',
                               title: 'Plank',
@@ -164,19 +162,19 @@ class _ActivityDetailState extends State<ActivityDetail> {
       ),
       bottomNavigationBar: GestureDetector(
         child: Container(
-          margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
-          padding: EdgeInsets.all(15.0),
+          margin: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
+          padding: const EdgeInsets.all(15.0),
           decoration: BoxDecoration(
-              color: Color.fromRGBO(100, 140, 255, 1.0),
+              color: const Color.fromRGBO(100, 140, 255, 1.0),
               borderRadius: BorderRadius.circular(15.0),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Color.fromRGBO(100, 140, 255, 0.5),
                   blurRadius: 10.0,
                   offset: Offset(0.0, 5.0),
                 ),
               ]),
-          child: Text(
+          child: const Text(
             'Start',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -186,14 +184,7 @@ class _ActivityDetailState extends State<ActivityDetail> {
             ),
           ),
         ),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) {
-              return ActivityTimer();
-            }),
-          );
-        },
+        onTap: () {},
       ),
     );
   }
