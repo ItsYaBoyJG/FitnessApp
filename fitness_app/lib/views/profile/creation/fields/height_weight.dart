@@ -3,7 +3,7 @@ import 'package:fitness_app/models/widgets/buttons/app_button.dart';
 import 'package:fitness_app/models/widgets/creation/height_val_container.dart';
 import 'package:fitness_app/models/widgets/creation/weight_val_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class HeightWeightContainer extends ConsumerStatefulWidget {
@@ -44,7 +44,7 @@ class _HeightWeightContainerState extends ConsumerState<HeightWeightContainer> {
                   onChanged: (value) {
                     if (value != '' || value.length > 1) {
                       ref.read(userCmHeightValueProvider.notifier).state =
-                          int.parse(value);
+                          double.parse(value);
                     } else {
                       return;
                     }
@@ -66,7 +66,7 @@ class _HeightWeightContainerState extends ConsumerState<HeightWeightContainer> {
               controller: _weightController,
               onChanged: (value) {
                 ref.read(userWeightValueProvider.notifier).state =
-                    int.parse(value);
+                    double.parse(value);
               },
               labelText: weightValue == 0 ? '0' : '$weightValue')
         ],

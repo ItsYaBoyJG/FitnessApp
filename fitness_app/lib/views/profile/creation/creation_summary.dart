@@ -43,7 +43,7 @@ class _CreationSummaryState extends ConsumerState<CreationSummary> {
           final calories = _calculations.calculateDailyCalorieIntake(
               ageValue,
               genderValue,
-              weightValue,
+              weightValue.round(),
               double.parse(cmValue.toString()),
               activityLevel,
               goalValue);

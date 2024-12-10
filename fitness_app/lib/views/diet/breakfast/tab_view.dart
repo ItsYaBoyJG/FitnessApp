@@ -1,14 +1,13 @@
 import 'package:fitness_app/backend/auth/user_auth.dart';
+import 'package:fitness_app/controllers/providers/state_providers.dart';
 import 'package:fitness_app/controllers/providers/stream_providers.dart';
-import 'package:fitness_app/models/equatables/breakfast.dart';
+import 'package:fitness_app/models/equatables/date_id_eq.dart';
 import 'package:fitness_app/views/diet/add_item/additempage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class BreakfastTabView extends ConsumerStatefulWidget {
-  const BreakfastTabView({super.key, required this.date});
-
-  final DateTime date;
+  const BreakfastTabView({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
@@ -21,8 +20,9 @@ class _BreakfastTabViewState extends ConsumerState<BreakfastTabView> {
 
   @override
   Widget build(BuildContext context) {
+    final date = ref.watch(dateTimeProvider);
     final item = ref.watch(breakfastItemStreamProvider(
-        BreakfastItemEquatable(id: _userAuth.getUserId(), date: widget.date)));
+        DateIdEquatable(id: _userAuth.getUserId(), date: date)));
 
     return SingleChildScrollView(
       child: Container(
@@ -53,7 +53,7 @@ class _BreakfastTabViewState extends ConsumerState<BreakfastTabView> {
                             context: context,
                             builder: (context) {
                               return AddItemPage(
-                                date: widget.date,
+                                date: date,
                                 tabName: 'breakfast',
                               );
                             });
@@ -63,24 +63,23 @@ class _BreakfastTabViewState extends ConsumerState<BreakfastTabView> {
               ),
             ),
             item.when(data: (data) {
-              if (data.exists && data.data() != null) {
-                Map<String, dynamic> listData =
-                    data.data() as Map<String, dynamic>;
+              if (data.docs.isNotEmpty) {
                 return SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.65,
-                  width: MediaQuery.of(context).size.width - 10,
-                  child: ListView.builder(
-                      itemCount: listData.length,
-                      itemBuilder: (context, index) {
+                    height: MediaQuery.of(context).size.height * 0.65,
+                    width: MediaQuery.of(context).size.width - 20,
+                    child: ListView(
+                      children: data.docs.map((value) {
+                        Map<String, dynamic> listData =
+                            value.data() as Map<String, dynamic>;
                         return Card(
                           child: ListTile(
-                            title: Text('${listData['name'][index]}'),
-                            subtitle: Text('${listData['count'][index]}'),
-                            trailing: Text('${listData['calories'][index]}'),
+                            title: Text('${listData['name']}'),
+                            subtitle: Text('${listData['count']} serving'),
+                            trailing: Text('${listData['calories']}'),
                           ),
                         );
-                      }),
-                );
+                      }).toList(),
+                    ));
               } else {
                 return Container();
               }

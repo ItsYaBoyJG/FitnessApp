@@ -6,12 +6,14 @@ class FoodSearchBar extends StatelessWidget {
       required this.height,
       required this.width,
       required this.controller,
-      this.onFieldSubmitted});
+      this.onFieldSubmitted,
+      required this.onTap});
 
   final double height;
   final double width;
   final TextEditingController controller;
   final void Function(String)? onFieldSubmitted;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class FoodSearchBar extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         onFieldSubmitted: onFieldSubmitted,
+        onTap: onTap,
         decoration: const InputDecoration(
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(50))),

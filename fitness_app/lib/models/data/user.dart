@@ -4,7 +4,7 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class UserProfile {
-  final String uid; // Unique identifier for the user
+  final String uId; // Unique identifier for the user
   final String name; // User's name
   final int age; // User's age
   final String gender; // e.g., Male, Female, Non-Binary, etc.
@@ -17,7 +17,7 @@ class UserProfile {
   final DateTime? updatedAt; // Date the profile was last updated (optional)
 
   UserProfile({
-    required this.uid,
+    required this.uId,
     required this.name,
     required this.age,
     required this.gender,
@@ -32,7 +32,7 @@ class UserProfile {
 
   factory UserProfile.fromJson(Map<String, dynamic> json) {
     return UserProfile(
-      uid: json['uid'],
+      uId: json['uId'],
       name: json['name'],
       age: json['age'],
       gender: json['gender'],
@@ -49,7 +49,7 @@ class UserProfile {
 
   Map<String, dynamic> toJson() {
     return {
-      'uid': uid,
+      'uId': uId,
       'name': name,
       'age': age,
       'gender': gender,

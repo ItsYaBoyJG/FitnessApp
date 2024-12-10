@@ -1,38 +1,77 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fitness_app/models/data/recipe.dart';
 import 'package:fitness_app/models/data/user.dart';
 
 class WriteToDb {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  void saveUserData(UserProfile user) {
-    _firebaseFirestore.collection('usersData').doc(user.uid).set(user.toJson());
+  void saveUserData(
+      String uId,
+      String name,
+      int age,
+      String gender,
+      double weight,
+      double height,
+      String activityLevel,
+      String fitnessGoal,
+      String goalReason,
+      DateTime createdAtDateTime,
+      DateTime? updatedAtDateTime) {
+    String createdAt =
+        '${createdAtDateTime.year}-${createdAtDateTime.month}-${createdAtDateTime.day}';
+    String? updatedAt = updatedAtDateTime != null
+        ? '${updatedAtDateTime.year}-${updatedAtDateTime.month}-${updatedAtDateTime.day}'
+        : null;
+
+    _firebaseFirestore.collection('usersData').doc(uId).set({
+      'uId': uId,
+      'name': name,
+      'age': age,
+      'weight': weight,
+      'height': height,
+      'activityLevel': activityLevel,
+      'fitnessGoal': fitnessGoal,
+      'goalReason': goalReason,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+    });
   }
 
-  void saveUser(String uid) {
-    _firebaseFirestore.collection('users').doc(uid);
+  void saveUser(String uId) {
+    _firebaseFirestore.collection('users').doc(uId);
   }
 
   void updateUserData(UserProfile user) {
-    _firebaseFirestore.collection('users').doc(user.uid).update(user.toJson());
+    _firebaseFirestore
+        .collection('usersData')
+        .doc(user.uId)
+        .update(user.toJson());
   }
 
-  void deleteUserData(String uid) {
-    _firebaseFirestore.collection('users').doc(uid).delete();
+  void updateUserGoal(String uId, String fitnessGoal) {
+    _firebaseFirestore
+        .collection('usersData')
+        .doc(uId)
+        .update({'fitnessGoal': fitnessGoal});
   }
 
-  void addUserToFriendsList(String uid, String name) {
+  void deleteUserData(String uId) {
+    _firebaseFirestore.collection('users').doc(uId).delete();
+  }
+
+  void addUserToFriendsList(String uId, String name) {
     _firebaseFirestore
         .collection('friends')
-        .doc(uid)
+        .doc(uId)
         .collection('friends')
         .doc(name)
         .set({});
   }
 
-  void addUserToFollowingList(String uid, String name) {
+  void addUserToFollowingList(String uId, String name) {
     _firebaseFirestore
         .collection('friends')
-        .doc(uid)
+        .doc(uId)
         .collection('following')
         .doc(name)
         .set({});
@@ -44,8 +83,8 @@ class WriteToDb {
     int protein,
     int fat,
     int carbs,
-  ) {
-    _firebaseFirestore.collection('userDailyMacroTotals').doc(uId).set({
+  ) async {
+    await _firebaseFirestore.collection('userDailyMacroTotals').doc(uId).set({
       'calories': calories,
       'protein': protein,
       'fat': fat,
@@ -53,20 +92,14 @@ class WriteToDb {
     });
   }
 
-  void saveDailyMacros(
-    String uId,
-    DateTime dateTime,
-    double calories,
-    double protein,
-    double fat,
-    double carbs,
-  ) {
+  void saveDailyMacros(String uId, DateTime dateTime, int calories, int protein,
+      int fat, int carbs) async {
     String date = '${dateTime.year}-${dateTime.month}-${dateTime.day}';
-    _firebaseFirestore
+    await _firebaseFirestore
         .collection('userDailyMacros')
         .doc(uId)
         .collection(date)
-        .doc()
+        .doc('totals')
         .set({
       'calories': calories,
       'protein': protein,
@@ -75,79 +108,63 @@ class WriteToDb {
     });
   }
 
-  /// save user added breakfast item
-  void saveBreakfastItem(
-      String uid, DateTime date, String name, int count, double calories) {
-    String collDate = '${date.year}-${date.month}-${date.day}';
-    _firebaseFirestore
-        .collection('breakfastItems')
-        .doc(uid)
-        .collection(collDate)
-        .doc()
-        .set({'name': name, 'count': count, 'calories': calories});
-  }
-
-  ///Save user selected lunch item
-  void saveLunchItem(
-      String uid, DateTime date, String name, int count, int calories) {
-    String collDate = '${date.year}-${date.month}-${date.day}';
-    _firebaseFirestore
-        .collection('lunchItems')
-        .doc(uid)
-        .collection(collDate)
-        .doc()
-        .set({'name': name, 'count': count, 'calories': calories});
-  }
-
-  ///Save user selected dinner item
-  void saveDinnerItem(
-      String uid, DateTime date, String name, int count, int calories) {
-    String collDate = '${date.year}-${date.month}-${date.day}';
-    _firebaseFirestore
-        .collection('dinnerItems')
-        .doc(uid)
-        .collection(collDate)
-        .doc()
-        .set({'name': name, 'count': count, 'calories': calories});
-  }
-
-  ///Save user selected snack item
-  void saveSnackItem(
-      String uid, DateTime date, String name, int count, int calories) {
-    String collDate = '${date.year}-${date.month}-${date.day}';
-    _firebaseFirestore
-        .collection('snackItems')
-        .doc(uid)
-        .collection(collDate)
-        .doc()
-        .set({'name': name, 'count': count, 'calories': calories});
-  }
-
-  void saveMealItem(String uid, DateTime date, String name, int count,
-      int calories, String meal) {
-    String collDate = '${date.year}-${date.month}-${date.day}';
-    String m = '${meal}items';
-    _firebaseFirestore
-        .collection(m)
-        .doc(uid)
-        .collection(collDate)
-        .doc()
-        .set({'name': name, 'count': count, 'calories': calories});
-  }
-
-  void saveExerciseData(String uid, DateTime dateTime, double caloriesBurned,
-      double caloriesGoal, double currentWeight, double goalWeight) {
+  void updateDailyMacros(String uId, DateTime dateTime, int calories,
+      int protein, int fat, int carbs) async {
     String date = '${dateTime.year}-${dateTime.month}-${dateTime.day}';
-    _firebaseFirestore
-        .collection('exerciseData')
-        .doc(uid)
+    await _firebaseFirestore
+        .collection('userDailyMacros')
+        .doc(uId)
         .collection(date)
+        .doc('totals')
+        .update({
+      'calories': calories,
+      'protein': protein,
+      'fat': fat,
+      'carbs': carbs,
+    });
+  }
+
+  void saveMealItem(String uId, DateTime date, String name, int count,
+      int calories, String meal) async {
+    String collDate = '${date.year}-${date.month}-${date.day}';
+    String m = '${meal}Items';
+    await _firebaseFirestore
+        .collection(m)
+        .doc(uId)
+        .collection(collDate)
         .doc()
+        .set({'name': name, 'count': count, 'calories': calories});
+  }
+
+  void saveExerciseData(String uId, DateTime dateTime, double caloriesBurned,
+      double currentWeight) async {
+    String date = '${dateTime.year}-${dateTime.month}-${dateTime.day}';
+    await _firebaseFirestore
+        .collection('workoutHistory')
+        .doc(uId)
+        .collection('dailyData')
+        .doc(date)
         .set({
       'caloriesBurned': caloriesBurned,
-      'caloriesGoal': caloriesGoal,
       'currentWeight': currentWeight,
-      'goalWeight': goalWeight,
     });
+  }
+
+  void saveGoalData(String uId, int caloriesGoal, double currenWeight,
+      double goalWeight) async {
+    await _firebaseFirestore.collection('goals').doc(uId).set({
+      'calorieGoal': caloriesGoal,
+      'currentWeight': currenWeight,
+      'goalWeight': goalWeight
+    });
+  }
+
+  void addSavedRecipe(Recipe recipe) async {
+    await _firebaseFirestore
+        .collection('usersData')
+        .doc(recipe.id)
+        .collection('recipes')
+        .doc()
+        .set(recipe.toJson());
   }
 }

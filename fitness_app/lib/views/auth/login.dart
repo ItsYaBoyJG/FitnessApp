@@ -45,11 +45,13 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             ListView(
+              scrollDirection: Axis.vertical,
+              physics: const ClampingScrollPhysics(),
               shrinkWrap: true,
               padding: const EdgeInsets.only(left: 24.0, right: 24.0),
               children: [
                 const SizedBox(
-                  height: 120,
+                  height: 20,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(5.0),
@@ -85,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.symmetric(vertical: 7.0),
                   child: TextFormField(
                     autofocus: false,
-                    obscureText: true,
+                    obscureText: false,
                     keyboardType: TextInputType.text,
                     controller: passwordController,
                     textInputAction: TextInputAction.done,

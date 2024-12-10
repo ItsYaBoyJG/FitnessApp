@@ -50,11 +50,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
           children: [
             ListView(
               shrinkWrap: true,
-              padding:
-                  const EdgeInsets.only(top: 20.0, left: 24.0, right: 24.0),
+              physics: const AlwaysScrollableScrollPhysics(),
+              padding: const EdgeInsets.only(top: 5.0, left: 14.0, right: 14.0),
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: Text(
                     'Register',
                     style: TextStyle(
@@ -79,6 +79,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         return 'Please enter a valid email.';
                       }
                       return null;
+                    },
+                    onTapOutside: (event) {
+                      FocusManager.instance.primaryFocus!.unfocus();
                     },
                     controller: emailTextController,
                     keyboardType: TextInputType.emailAddress,
@@ -113,6 +116,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     controller: passwordTextController,
                     textInputAction: TextInputAction.next,
                     focusNode: passwordFocus,
+                    onTapOutside: (event) {
+                      FocusManager.instance.primaryFocus!.unfocus();
+                    },
                     onFieldSubmitted: (term) {
                       FocusScope.of(context).requestFocus(confirmPasswordFocus);
                     },

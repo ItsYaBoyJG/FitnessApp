@@ -22,7 +22,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       child: Column(
         children: [
           const SizedBox(
-            height: 70,
+            height: 30,
           ),
           const Padding(
             padding: EdgeInsets.all(25.0),

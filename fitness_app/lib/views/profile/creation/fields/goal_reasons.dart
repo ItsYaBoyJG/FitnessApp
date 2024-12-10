@@ -3,7 +3,7 @@ import 'package:fitness_app/models/lists/user_info_list.dart';
 import 'package:fitness_app/models/widgets/creation/data_list_item.dart';
 import 'package:fitness_app/models/widgets/creation/profile_data_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class GoalReasonsContainer extends ConsumerStatefulWidget {

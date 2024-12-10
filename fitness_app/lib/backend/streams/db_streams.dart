@@ -7,52 +7,63 @@ class DbStreams {
     return _firebaseFirestore.collection('users').doc(id).id;
   }
 
-  Stream<DocumentSnapshot<Map<String, dynamic>>> breakfastItemsStream(
+  Stream<QuerySnapshot<Map<String, dynamic>>> breakfastItemsStream(
       String id, DateTime dateTime) {
     String date = '${dateTime.year}-${dateTime.month}-${dateTime.day}';
     return _firebaseFirestore
-        .collection('meals')
+        .collection('breakfastItems')
         .doc(id)
-        .collection('breakfast')
-        .doc(date)
+        .collection(date)
+        .orderBy('name')
         .snapshots();
   }
 
-  Stream<DocumentSnapshot<Map<String, dynamic>>> lunchItemsStreams(
+  Stream<QuerySnapshot<Map<String, dynamic>>> lunchItemsStreams(
       String id, DateTime dateTime) {
     String date = '${dateTime.year}-${dateTime.month}-${dateTime.day}';
     return _firebaseFirestore
-        .collection('meals')
+        .collection('lunchItems')
         .doc(id)
-        .collection('lunch')
-        .doc(date)
+        .collection(date)
+        .orderBy('name')
         .snapshots();
   }
 
-  Stream<DocumentSnapshot<Map<String, dynamic>>> dinnerItemStreams(
+  Stream<QuerySnapshot<Map<String, dynamic>>> dinnerItemStreams(
       String id, DateTime dateTime) {
     String date = '${dateTime.year}-${dateTime.month}-${dateTime.day}';
     return _firebaseFirestore
-        .collection('meals')
+        .collection('dinnerItems')
         .doc(id)
-        .collection('dinner')
-        .doc(date)
+        .collection(date)
+        .orderBy('name')
         .snapshots();
   }
 
-  Stream<DocumentSnapshot<Map<String, dynamic>>> snackItemsStreams(
+  Stream<QuerySnapshot<Map<String, dynamic>>> snackItemsStreams(
       String id, DateTime dateTime) {
     String date = '${dateTime.year}-${dateTime.month}-${dateTime.day}';
     return _firebaseFirestore
-        .collection('meals')
+        .collection('snackItems')
         .doc(id)
-        .collection('snack')
-        .doc(date)
+        .collection(date)
+        .orderBy('name')
         .snapshots();
   }
 
   Stream<DocumentSnapshot<Map<String, dynamic>>> getRecipesByCategory(
       String category) {
     return _firebaseFirestore.collection('recipes').doc(category).snapshots();
+  }
+
+  Stream<DocumentSnapshot<Map<String, dynamic>>> getDailyMacroAmounts(
+      String uId, DateTime dateTime) {
+    String date = '${dateTime.year}-${dateTime.month}-${dateTime.day}';
+    return _firebaseFirestore
+        .collection('userDailyMacros')
+        .doc(uId)
+        .collection(date)
+        .doc('totals')
+        .snapshots();
   }
 }

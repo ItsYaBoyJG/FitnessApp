@@ -8,7 +8,7 @@ import 'package:fitness_app/models/widgets/creation/values/fat.dart';
 import 'package:fitness_app/models/widgets/creation/values/protein.dart';
 import 'package:fitness_app/models/widgets/buttons/app_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class DailyTotalsSumPage extends ConsumerStatefulWidget {
@@ -93,17 +93,18 @@ class _DailyTotalsSumPageState extends ConsumerState<DailyTotalsSumPage> {
               _writeToDb.saveUser(_userAuth.getUserId());
               _writeToDb.saveDailyMacrosTotals(
                   _userAuth.getUserId(), calories, protein, fat, carbs);
-              _writeToDb.saveUserData(UserProfile(
-                  uid: _userAuth.getUserId(),
-                  name: name,
-                  age: age,
-                  gender: gender,
-                  weight: double.parse(weight.toString()),
-                  height: double.parse(height.toString()),
-                  activityLevel: activity,
-                  fitnessGoal: goal,
-                  goalReason: goalReason,
-                  createdAt: DateTime.now()));
+              _writeToDb.saveUserData(
+                  _userAuth.getUserId(),
+                  name,
+                  age,
+                  gender,
+                  weight,
+                  height,
+                  activity,
+                  goal,
+                  goalReason,
+                  DateTime.now(),
+                  null);
 
               // ref.invalidate(userProfileData);
               Future.delayed(const Duration(milliseconds: 200));

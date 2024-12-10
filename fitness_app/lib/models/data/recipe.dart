@@ -8,7 +8,7 @@ class Recipe {
   final String title;
   final String description;
   final String imageUrl;
-  final int cookingTime; // in minutes
+  final String cookingTime;
   final List<RecipeComponent> components;
   final List<String> steps;
 

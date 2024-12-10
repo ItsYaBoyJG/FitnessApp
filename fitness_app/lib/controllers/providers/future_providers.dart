@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fitness_app/backend/auth/user_auth.dart';
 import 'package:fitness_app/backend/futures/db_futures.dart';
-import 'package:fitness_app/models/equatables/exercise.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fitness_app/models/equatables/date_id_eq.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final dbFuturesProvider = Provider((ref) => DbFutures());
 
@@ -19,10 +19,14 @@ final userDailyMacroTotalsProvider = FutureProvider.family((ref, String id) {
   return ref.watch(dbFuturesProvider).getDailyMacros(id);
 });
 
-final userExerciseDataProvider =
-    FutureProvider.family<QuerySnapshot, ExerciseEquatable>(
-        (ref, exerciseData) {
-  return ref
-      .watch(dbFuturesProvider)
-      .getWorkoutHistory(exerciseData.id, exerciseData.date);
+final userExerciseDataProvider = FutureProvider.family((ref, String id) {
+  return ref.watch(dbFuturesProvider).getWorkoutHistory(id);
+});
+
+final userGoalDataProvider = FutureProvider.family((ref, String uId) {
+  return ref.watch(dbFuturesProvider).getUserGoals(uId);
+});
+
+final userSavedRecipesProvider = FutureProvider.family((ref, String id) {
+  return ref.watch(dbFuturesProvider).getSavedRecipes(id);
 });

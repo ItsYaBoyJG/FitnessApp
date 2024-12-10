@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-class ExerciseEquatable extends Equatable {
-  const ExerciseEquatable({required this.id, required this.date});
+class DateIdEquatable extends Equatable {
+  const DateIdEquatable({required this.id, required this.date});
+
   final String id;
   final DateTime date;
 

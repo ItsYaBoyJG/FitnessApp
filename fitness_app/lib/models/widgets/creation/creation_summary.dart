@@ -24,7 +24,7 @@ class CreationSummaryContainer extends StatelessWidget {
   final String heightUnits;
   final String heightValue;
   final String weightUnits;
-  final int weightValue;
+  final double weightValue;
   final String activityLevel;
   final String goalValue;
   final String reasonValue;

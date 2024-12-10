@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  openfoodfacts: ^3.16.0
+  openfoodfacts: ^3.18.1
 
   permission_handler: ^11.3.1
 
@@ -18,11 +18,12 @@ dependencies:
 
   cloud_firestore: ^5.4.4
   firebase_core: ^3.6.0
-  firebase_storage: ^12.3.4
+  #firebase_storage: ^12.3.4
   firebase_auth: ^5.3.1
   #shared_preferences: ^2.3.3
 
-  flutter_riverpod: ^2.6.1
+  hooks_riverpod: ^2.6.1
+  flutter_hooks: ^0.20.5
 
   equatable: ^2.0.5
 
@@ -35,6 +36,8 @@ dependencies:
   go_router: ^14.3.0
 
   json_annotation: ^4.9.0
+
+  syncfusion_flutter_charts: ^27.2.5
 
 dev_dependencies:
   flutter_test:

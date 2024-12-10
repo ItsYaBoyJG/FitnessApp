@@ -1,13 +1,15 @@
 import 'package:fitness_app/backend/auth/user_auth.dart';
 import 'package:fitness_app/controllers/providers/future_providers.dart';
+import 'package:fitness_app/controllers/providers/state_providers.dart';
 import 'package:fitness_app/views/diet/breakfast/tab_view.dart';
 import 'package:fitness_app/views/diet/dinner/tab_view.dart';
 import 'package:fitness_app/views/diet/lunch/tab_view.dart';
+import 'package:fitness_app/views/diet/macros.dart';
 import 'package:fitness_app/views/diet/snack/tab_view.dart';
 import 'package:fitness_app/models/widgets/calendar/calendar.dart';
-import 'package:fitness_app/models/widgets/header.dart';
+import 'package:fitness_app/models/widgets/containers/header.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class DietTab extends ConsumerStatefulWidget {
@@ -20,14 +22,15 @@ class DietTab extends ConsumerStatefulWidget {
 }
 
 class _DietTabState extends ConsumerState<DietTab> {
-  final UserAuth _auth = UserAuth();
+  final UserAuth _userAuth = UserAuth();
 
   DateTime? _selectedDay;
   DateTime _focusedDay = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
-    final macros = ref.watch(userDailyMacroTotalsProvider(_auth.getUserId()));
+    final macros =
+        ref.watch(userDailyMacroTotalsProvider(_userAuth.getUserId()));
 
     return macros.when(data: (data) {
       if (data.exists && data.data() != null) {
@@ -50,17 +53,9 @@ class _DietTabState extends ConsumerState<DietTab> {
                           color: const Color.fromRGBO(100, 140, 255, 1.0),
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        child: const Center(
-                          child: Text(
-                            'Tracker',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                        ),
+                        child: Container(),
                       ),
-                      title: 'Diet',
+                      title: 'Daily Diet',
                     ),
                     bottom: TabBar(
                       tabs: const [
@@ -98,22 +93,28 @@ class _DietTabState extends ConsumerState<DietTab> {
                   ),
                   body: Column(
                     children: [
-                      CalendarDisplay(
-                        focusedDay: _focusedDay,
-                        onDaySelected: (focusedDay, selectedDay) {
-                          if (!isSameDay(_selectedDay, selectedDay)) {
-                            setState(() {
-                              _selectedDay = selectedDay;
-                              _focusedDay = focusedDay;
-                            });
-                          }
-                        },
-                        onPageChanged: (focusedDay) {
-                          _focusedDay = focusedDay;
-                        },
-                        selectedDayPredicate: (selectedDay) {
-                          return isSameDay(_selectedDay, selectedDay);
-                        },
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.18,
+                        width: MediaQuery.of(context).size.width - 5,
+                        child: CalendarDisplay(
+                          focusedDay: _focusedDay,
+                          onDaySelected: (focusedDay, selectedDay) {
+                            if (!isSameDay(_selectedDay, selectedDay)) {
+                              setState(() {
+                                _selectedDay = selectedDay;
+                                _focusedDay = focusedDay;
+                              });
+                              ref.read(dateTimeProvider.notifier).state =
+                                  selectedDay;
+                            }
+                          },
+                          onPageChanged: (focusedDay) {
+                            _focusedDay = focusedDay;
+                          },
+                          selectedDayPredicate: (selectedDay) {
+                            return isSameDay(_selectedDay, selectedDay);
+                          },
+                        ),
                       ),
                       Container(
                         height: MediaQuery.of(context).size.height * 0.08,
@@ -121,45 +122,22 @@ class _DietTabState extends ConsumerState<DietTab> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.0),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                const Text('Calories'),
-                                Text('${macro['calories']}')
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                const Text('Protein'),
-                                Text('${macro['protein']}')
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                const Text('Fat'),
-                                Text('${macro['fat']}')
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                const Text('Carbs'),
-                                Text('${macro['carbs']}')
-                              ],
-                            ),
-                          ],
-                        ),
+                        child: MacrosDisplay(
+                            uId: _userAuth.getUserId(),
+                            totalCalories: macro['calories'],
+                            totalProtein: macro['protein'],
+                            totalFat: macro['fat'],
+                            totalCarbs: macro['carbs']),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.45,
                         width: MediaQuery.of(context).size.width - 2,
-                        child: TabBarView(
+                        child: const TabBarView(
                           children: [
-                            BreakfastTabView(date: _focusedDay),
-                            LunchTabView(date: _focusedDay),
-                            DinnerTabView(date: _focusedDay),
-                            SnackTabView(date: _focusedDay),
+                            BreakfastTabView(),
+                            LunchTabView(),
+                            DinnerTabView(),
+                            SnackTabView(),
                           ],
                         ),
                       )

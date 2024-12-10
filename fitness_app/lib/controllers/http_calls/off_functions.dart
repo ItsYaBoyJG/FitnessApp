@@ -6,7 +6,7 @@ class OffFunctions {
   static const _user = User(userId: _email, password: _password);
 
   void setUserAgent() {
-    OpenFoodAPIConfiguration.userAgent = UserAgent(name: 'abettermeapp');
+    OpenFoodAPIConfiguration.userAgent = UserAgent(name: 'fitnessapp');
   }
 
   Future<List<Product>?>? searchProduct(String name) async {
@@ -25,14 +25,8 @@ class OffFunctions {
     return result.products;
   }
 
-  Future getItemSuggestions(String input) async {
-    print(input);
-    try {
-      await OpenFoodAPIClient.getSuggestions(TagType.CATEGORIES,
-          language: OpenFoodFactsLanguage.ENGLISH, input: input);
-    } catch (e) {
-      print(e);
-    }
+  getItemSuggestions(String input) async {
+    // await OpenFoodAPIClient.getpro
   }
 
   Future<String?>? extractIngredients(String barcode) async {

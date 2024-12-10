@@ -1,23 +1,32 @@
 import 'package:fitness_app/backend/auth/user_auth.dart';
 import 'package:fitness_app/backend/writes/write_to_db.dart';
 import 'package:fitness_app/controllers/http_calls/off_functions.dart';
+import 'package:fitness_app/controllers/providers/state_providers.dart';
+import 'package:fitness_app/controllers/providers/stream_providers.dart';
+import 'package:fitness_app/models/equatables/date_id_eq.dart';
 import 'package:fitness_app/models/widgets/search/search_bar.dart';
+import 'package:fitness_app/routes.dart';
+import 'package:fitness_app/views/diet/add_item/add_item_button.dart';
 import 'package:fitness_app/views/diet/add_item/search_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:openfoodfacts/openfoodfacts.dart';
 
-class AddItemPage extends StatefulWidget {
+class AddItemPage extends StatefulHookConsumerWidget {
   const AddItemPage({super.key, required this.tabName, required this.date});
 
   final String tabName;
   final DateTime date;
 
   @override
-  State<AddItemPage> createState() => _AddItemPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() {
+    return _AddItemPageState();
+  }
 }
 
-class _AddItemPageState extends State<AddItemPage> {
-  TextEditingController controller = TextEditingController();
+class _AddItemPageState extends ConsumerState<AddItemPage> {
   final OffFunctions _offFunctions = OffFunctions();
   final WriteToDb _writeToDb = WriteToDb();
   final UserAuth _userAuth = UserAuth();
@@ -25,20 +34,17 @@ class _AddItemPageState extends State<AddItemPage> {
   List<Product> results = [];
 
   void _getSearchItemList(String value) async {
-    final result = await _offFunctions.getItemSuggestions(value);
-    print(result);
-
-    if (result == '' || result == null) {
-      print('nothing ');
-    }
+    final result = await _offFunctions.searchProduct(value);
 
     setState(() {
-      //  results = result!;
+      results = result!;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final controller = useTextEditingController();
+
     return SafeArea(
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.80,
@@ -46,19 +52,7 @@ class _AddItemPageState extends State<AddItemPage> {
         child: Form(
             child: Column(
           children: [
-            Row(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(15.0, 0.5, 2.0, 1.5),
-                  child: Text('Add or search for item.'),
-                ),
-                OutlinedButton(
-                    onPressed: () {
-                      //  _writeToDb.saveMealItem(_userAuth.getUserId(), date, name, count, calories, meal)
-                    },
-                    child: const Text('Add +'))
-              ],
-            ),
+            AddItemButton(tabName: widget.tabName),
             FoodSearchBar(
               height: 50,
               width: MediaQuery.of(context).size.width - 20,
@@ -66,8 +60,18 @@ class _AddItemPageState extends State<AddItemPage> {
               onFieldSubmitted: (value) {
                 _getSearchItemList(value);
               },
+              onTap: () {
+                controller.clear();
+                results.clear();
+              },
             ),
-            SearchList(results: results)
+            (controller.text != '' && controller.text.length >= 2)
+                ? results.isNotEmpty
+                    ? SearchList(results: results)
+                    : const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      )
+                : Container()
           ],
         )),
       ),
