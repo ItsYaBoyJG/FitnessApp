@@ -3,17 +3,6 @@
  - Using Firebase (Cloud Firestore, Firebase Auth), Riverpod, Open Food Facts,
 
 
-# Images
-
-![](https://github.com/user-attachments/assets/218c6e94-f39c-4680-8202-18f70802c18b)
-![](https://github.com/user-attachments/assets/95d0fe2b-f1a3-40c6-81cd-c7c9215b7666)
-![](https://github.com/user-attachments/assets/10cb8974-4169-48a1-ac69-aa80080ccb4f)
-![](https://github.com/user-attachments/assets/9eef244c-09e8-4cc4-8f2d-134728782616)
-
-
-
-
-
 # Current Features:
  - Nutrition Tracking Page
 [found here](https://github.com/ItsYaBoyJG/FitnessApp/blob/main/fitness_app/lib/views/diet/diet_tab.dart).
