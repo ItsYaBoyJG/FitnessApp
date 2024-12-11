@@ -39,6 +39,8 @@ dependencies:
 
   syncfusion_flutter_charts: ^27.2.5
 
+  uuid: ^4.5.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

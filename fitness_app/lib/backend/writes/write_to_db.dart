@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fitness_app/models/data/recipe.dart';
 import 'package:fitness_app/models/data/user.dart';
+import 'package:fitness_app/models/data/workout_plan.dart';
 
 class WriteToDb {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
@@ -166,5 +167,32 @@ class WriteToDb {
         .collection('recipes')
         .doc()
         .set(recipe.toJson());
+  }
+
+  addWorkout(WorkoutPlan workoutPlan) {
+    _firebaseFirestore
+        .collection('exercises')
+        .doc('lowerBody')
+        .collection(workoutPlan.id)
+        .doc()
+        .set(workoutPlan.toJson());
+  }
+
+  addUpperBody(WorkoutPlan workoutPlan) {
+    _firebaseFirestore
+        .collection('exercises')
+        .doc('upperBody')
+        .collection(workoutPlan.id)
+        .doc()
+        .set(workoutPlan.toJson());
+  }
+
+  addRunning(WorkoutPlan workoutPlan) {
+    _firebaseFirestore
+        .collection('exercises')
+        .doc('running')
+        .collection(workoutPlan.id)
+        .doc()
+        .set(workoutPlan.toJson());
   }
 }

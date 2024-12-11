@@ -1,11 +1,18 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fitness_app/backend/auth/user_auth.dart';
 import 'package:fitness_app/backend/writes/write_to_db.dart';
 import 'package:fitness_app/controllers/providers/future_providers.dart';
 import 'package:fitness_app/models/data/recipe.dart';
+import 'package:fitness_app/models/data/workout_component.dart';
+import 'package:fitness_app/models/data/workout_plan.dart';
 import 'package:fitness_app/models/widgets/containers/main_program_card.dart';
 import 'package:fitness_app/models/widgets/dialogs/edit_goal.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:uuid/uuid.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
@@ -18,6 +25,13 @@ class ProfilePage extends ConsumerStatefulWidget {
 
 class _ProfilePageState extends ConsumerState<ProfilePage> {
   final UserAuth _userAuth = UserAuth();
+
+  Future<String> getImage(String imagePath) async {
+    final b = await rootBundle.load(imagePath);
+
+    Uint8List r = b.buffer.asUint8List(b.offsetInBytes, b.lengthInBytes);
+    return r.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +160,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                         ],
                       ),
                     ),
-                    Container(
+                    /* Container(
                       height: MediaQuery.of(context).size.height * 0.30,
                       width: MediaQuery.of(context).size.width - 20,
                       margin: const EdgeInsets.all(10.0),
@@ -188,40 +202,120 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       }, loading: () {
                         return const CircularProgressIndicator.adaptive();
                       }),
-                    ),
-                    /*  ElevatedButton(
-                        onPressed: () {
-                          WriteToDb _writeToDb = WriteToDb();
+                    ), */
+                    ElevatedButton(
+                        onPressed: () async {
+                          WriteToDb writeToDb = WriteToDb();
 
-                          _writeToDb.addSavedRecipe(Recipe(
-                              id: _userAuth.getUserId(),
-                              title: 'Chicken Bacon Ranch Pizza',
-                              description: 'Healthy Pizza',
-                              imageUrl: 'imageUrl',
-                              cookingTime: '1 hour',
-                              components: [
-                                RecipeComponent(
-                                    name: 'Dough', quantity: '32oz'),
-                                RecipeComponent(
-                                    name: 'Chicken', quantity: '32oz'),
-                                RecipeComponent(
-                                    name: 'Ranch Dressing', quantity: '24oz'),
-                                RecipeComponent(
-                                    name: 'Bacon', quantity: '48oz'),
-                                RecipeComponent(
-                                    name: 'Cheese', quantity: '24oz')
+                          Uuid uuid = Uuid();
+
+                          String w1Image = await getImage(
+                              'assets/images/man_deadlifting.jpg');
+                          String w2Image = await getImage(
+                              'assets/images/woman_workingout_outside.jpg');
+                          String w3Image = await getImage(
+                              'assets/images/woman_doing_shoulder_press.jpg');
+                          String w4Image = await getImage(
+                              'assets/images/woman_mid_stride_running.jpg');
+
+                          writeToDb.addWorkout(WorkoutPlan(
+                              id: uuid.v1(),
+                              title: 'workout1',
+                              description: 'Compound movement focused',
+                              duration: 90,
+                              exercises: [
+                                WorkoutComponent(
+                                    name: 'Squats',
+                                    type: 'Strength',
+                                    duration: 5,
+                                    instructions: '3 sets x 5 reps'),
+                                WorkoutComponent(
+                                    name: 'Lunges',
+                                    type: 'Strength',
+                                    duration: 5,
+                                    instructions: '3 sets x 10 reps'),
+                                WorkoutComponent(
+                                    name: 'Leg extensions',
+                                    type: 'Strength',
+                                    duration: 5,
+                                    instructions: '4 sets x 15 reps'),
+                                WorkoutComponent(
+                                    name: 'Leg curls',
+                                    type: 'Strength',
+                                    duration: 5,
+                                    instructions: '4 sets 15 reps')
                               ],
-                              steps: [
-                                'Make the dough',
-                                'Add ranch as pizza sauce',
-                                'Cook the chicken',
-                                'Cook Bacon',
-                                'Add chicken and bacon to pizza',
-                                'Add cheese',
-                                'Bake a 380 degrees for 20 minutes'
-                              ]));
+                              image: w1Image));
+
+                          writeToDb.addWorkout(WorkoutPlan(
+                              id: uuid.v1(),
+                              title: 'workout2',
+                              description: 'Bodyweight workout',
+                              duration: 30,
+                              exercises: [
+                                WorkoutComponent(
+                                    name: 'Lunges',
+                                    type: 'Strength',
+                                    duration: 10,
+                                    instructions: '5 sets x 20 reps'),
+                                WorkoutComponent(
+                                    name: 'Bodyweight Squats',
+                                    type: 'Strength',
+                                    duration: 10,
+                                    instructions: '5 sets x 15 reps'),
+                                WorkoutComponent(
+                                    name: 'Crunches',
+                                    type: 'Strength',
+                                    duration: 5,
+                                    instructions: '3 sets x 20 reps'),
+                                WorkoutComponent(
+                                    name: 'Walking Lunges',
+                                    type: 'Strength',
+                                    duration: 5,
+                                    instructions: '2 sets x 20 reps')
+                              ],
+                              image: w2Image));
+
+                          writeToDb.addUpperBody(WorkoutPlan(
+                              id: uuid.v1(),
+                              title: 'workout1',
+                              description: 'Compound movement based',
+                              duration: 60,
+                              exercises: [
+                                WorkoutComponent(
+                                    name: 'Bench Press',
+                                    type: 'Strength',
+                                    duration: 10,
+                                    instructions: '3 sets x 8-12 reps'),
+                                WorkoutComponent(
+                                    name: 'Shoulder press',
+                                    type: 'Strength',
+                                    duration: 10,
+                                    instructions: '3 sets x 12-15 reps'),
+                                WorkoutComponent(
+                                    name: 'Lat Pulldown',
+                                    type: 'Strength',
+                                    duration: 8,
+                                    instructions: '3 sets x 8-10 reps ')
+                              ],
+                              image: w3Image));
+
+                          writeToDb.addRunning(WorkoutPlan(
+                              id: uuid.v1(),
+                              title: 'workout1',
+                              description: 'Cardio workout',
+                              duration: 15,
+                              exercises: [
+                                WorkoutComponent(
+                                    name: 'Treadmill',
+                                    type: 'Cardio',
+                                    duration: 15,
+                                    instructions:
+                                        'Moderate paced run on the treadmill')
+                              ],
+                              image: w4Image));
                         },
-                        child: Text('Save Recipe')) */
+                        child: Text('Save Data For Testing'))
                   ],
                 ),
               ),
