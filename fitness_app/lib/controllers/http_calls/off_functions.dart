@@ -25,9 +25,9 @@ class OffFunctions {
     return result.products;
   }
 
-  getItemSuggestions(String input) async {
-    // await OpenFoodAPIClient.getpro
-  }
+//  getItemSuggestions(String input) async {
+  // await OpenFoodAPIClient.getpro
+//  }
 
   Future<String?>? extractIngredients(String barcode) async {
     OcrIngredientsResult result = await OpenFoodAPIClient.extractIngredients(

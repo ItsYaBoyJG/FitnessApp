@@ -1,16 +1,9 @@
-import 'package:fitness_app/backend/auth/user_auth.dart';
-import 'package:fitness_app/backend/writes/write_to_db.dart';
 import 'package:fitness_app/controllers/http_calls/off_functions.dart';
-import 'package:fitness_app/controllers/providers/state_providers.dart';
-import 'package:fitness_app/controllers/providers/stream_providers.dart';
-import 'package:fitness_app/models/equatables/date_id_eq.dart';
 import 'package:fitness_app/models/widgets/search/search_bar.dart';
-import 'package:fitness_app/routes.dart';
 import 'package:fitness_app/views/diet/add_item/add_item_button.dart';
 import 'package:fitness_app/views/diet/add_item/search_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:openfoodfacts/openfoodfacts.dart';
 
@@ -28,8 +21,6 @@ class AddItemPage extends StatefulHookConsumerWidget {
 
 class _AddItemPageState extends ConsumerState<AddItemPage> {
   final OffFunctions _offFunctions = OffFunctions();
-  final WriteToDb _writeToDb = WriteToDb();
-  final UserAuth _userAuth = UserAuth();
 
   List<Product> results = [];
 

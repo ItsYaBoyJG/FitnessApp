@@ -5,59 +5,66 @@ class ImageCardWithInternal extends StatelessWidget {
       {super.key,
       required this.image,
       required this.title,
-      required this.duration});
+      required this.duration,
+      required this.onTap});
 
-  final String image, title, duration;
+  final String image;
+  final String title;
+  final String duration;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width * 0.85,
-      height: size.width * 0.60,
-      padding: const EdgeInsets.all(20.0),
-      margin: const EdgeInsets.only(right: 15.0),
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(image),
-          fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: size.width * 0.85,
+        height: size.width * 0.60,
+        padding: const EdgeInsets.all(20.0),
+        margin: const EdgeInsets.only(right: 15.0),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(image),
+            fit: BoxFit.cover,
+          ),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(15.0),
+          ),
         ),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(15.0),
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            padding: const EdgeInsets.symmetric(
-              vertical: 4.0,
-              horizontal: 10.0,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: 4.0,
+                horizontal: 10.0,
               ),
-              color: Colors.black.withAlpha(900),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(20.0),
+                ),
+                color: Colors.black.withAlpha(900),
+              ),
+              child: Text(
+                duration,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 12.0,
+                ),
+              ),
             ),
-            child: Text(
-              duration,
+            Text(
+              title,
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 12.0,
+                fontSize: 28,
+                fontWeight: FontWeight.w900,
               ),
             ),
-          ),
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 28,
-              fontWeight: FontWeight.w900,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

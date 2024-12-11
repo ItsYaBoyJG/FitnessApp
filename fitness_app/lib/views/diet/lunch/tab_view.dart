@@ -83,9 +83,9 @@ class _LunchTabViewState extends ConsumerState<LunchTabView> {
                 return Container();
               }
             }, error: (error, stackTrace) {
-              return Text('error');
+              return ErrorWidget(error);
             }, loading: () {
-              return CircularProgressIndicator.adaptive();
+              return const CircularProgressIndicator.adaptive();
             })
           ],
         ),

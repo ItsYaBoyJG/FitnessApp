@@ -2,7 +2,6 @@ import 'package:fitness_app/backend/auth/user_auth.dart';
 import 'package:fitness_app/controllers/providers/stream_providers.dart';
 import 'package:fitness_app/models/equatables/date_id_eq.dart';
 import 'package:fitness_app/backend/writes/write_to_db.dart';
-import 'package:fitness_app/controllers/http_calls/off_functions.dart';
 import 'package:fitness_app/controllers/providers/state_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -22,7 +21,6 @@ class AddItemButton extends StatefulHookConsumerWidget {
 }
 
 class _AddItemButtonState extends ConsumerState<AddItemButton> {
-  final OffFunctions _offFunctions = OffFunctions();
   final WriteToDb _writeToDb = WriteToDb();
   final UserAuth _userAuth = UserAuth();
 
@@ -127,9 +125,7 @@ class _AddItemButtonState extends ConsumerState<AddItemButton> {
                                     context.pop();
                                     ref.invalidate(
                                         dailyMacroAmountsStreamProvider);
-                                  } on Exception catch (e) {
-                                    print(e);
-                                  }
+                                  } on Exception catch (e) {}
                                 },
                                 child: const Text('Add item'))
                           ],
@@ -228,9 +224,7 @@ class _AddItemButtonState extends ConsumerState<AddItemButton> {
                                     context.pop();
                                     ref.invalidate(
                                         dailyMacroAmountsStreamProvider);
-                                  } catch (e) {
-                                    print(e);
-                                  }
+                                  } catch (e) {}
                                 },
                                 child: const Text('Add item'))
                           ],
@@ -241,10 +235,11 @@ class _AddItemButtonState extends ConsumerState<AddItemButton> {
           ],
         );
       } else {
-        return Text('nothing');
+        //TODO: Need a widget to handle what the user can do when there is no data
+        return Container();
       }
     }, error: (error, stackTrace) {
-      return Text('error');
+      return ErrorWidget(error);
     }, loading: () {
       return const Center(
         child: CircularProgressIndicator.adaptive(),

@@ -1,4 +1,3 @@
-import 'package:fitness_app/controllers/http_calls/off_functions.dart';
 import 'package:fitness_app/controllers/providers/state_providers.dart';
 import 'package:fitness_app/views/diet/add_item/selected_item.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +16,6 @@ class SearchList extends ConsumerStatefulWidget {
 }
 
 class _SearchListState extends ConsumerState<SearchList> {
-  OffFunctions _offFunctions = OffFunctions();
-
   @override
   Widget build(BuildContext context) {
     final selected = ref.watch(productSelectedBoolProvider);

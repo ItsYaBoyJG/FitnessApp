@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fitness_app/backend/auth/user_auth.dart';
 import 'package:fitness_app/backend/futures/db_futures.dart';
-import 'package:fitness_app/models/equatables/date_id_eq.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final dbFuturesProvider = Provider((ref) => DbFutures());
@@ -29,4 +27,15 @@ final userGoalDataProvider = FutureProvider.family((ref, String uId) {
 
 final userSavedRecipesProvider = FutureProvider.family((ref, String id) {
   return ref.watch(dbFuturesProvider).getSavedRecipes(id);
+});
+
+final cardioExerciseProvider = FutureProvider((ref) {
+  return ref.watch(dbFuturesProvider).getWorkoutPlans('cardio');
+});
+
+final lowerBodyExerciseProvider = FutureProvider((ref) {
+  return ref.watch(dbFuturesProvider).getWorkoutPlans('lowerBody');
+});
+final upperBodyExerciseProvider = FutureProvider((ref) {
+  return ref.watch(dbFuturesProvider).getWorkoutPlans('upperBody');
 });

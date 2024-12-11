@@ -84,7 +84,7 @@ class _BreakfastTabViewState extends ConsumerState<BreakfastTabView> {
                 return Container();
               }
             }, error: (error, stackTrace) {
-              return Text('error');
+              return ErrorWidget(error);
             }, loading: () {
               return const CircularProgressIndicator.adaptive();
             }),

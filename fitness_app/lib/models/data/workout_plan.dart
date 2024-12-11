@@ -40,6 +40,7 @@ class WorkoutPlan {
       'description': description,
       'duration': duration,
       'exercises': exercises.map((item) => item.toJson()).toList(),
+      'image': image,
     };
   }
 }

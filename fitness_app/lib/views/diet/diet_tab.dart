@@ -147,7 +147,8 @@ class _DietTabState extends ConsumerState<DietTab> {
           ),
         );
       } else {
-        return Placeholder();
+        //TODO: need a widget to display here when there is not data, but no error
+        return Container();
       }
     }, error: (error, stackTrace) {
       return Text('$error ...... $stackTrace');

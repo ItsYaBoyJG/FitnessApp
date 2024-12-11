@@ -24,11 +24,11 @@ class DbFutures {
 
   Future<DocumentSnapshot<Map<String, dynamic>>> getWorkoutPlans(
       String category) {
-    return _firebaseFirestore.collection('workoutPlans').doc(category).get();
+    return _firebaseFirestore.collection('exercises').doc(category).get();
   }
 
   Future<QuerySnapshot<Map<String, dynamic>>> getAllWorkoutPlans() {
-    return _firebaseFirestore.collection('workoutPlans').get();
+    return _firebaseFirestore.collection('exercises').get();
   }
 
   Future<QuerySnapshot<Map<String, dynamic>>> getPublicUserAccounts(String id) {

@@ -1,7 +1,6 @@
 import 'package:fitness_app/backend/auth/user_auth.dart';
 import 'package:fitness_app/backend/writes/write_to_db.dart';
 import 'package:fitness_app/controllers/providers/state_providers.dart';
-import 'package:fitness_app/models/data/user.dart';
 import 'package:fitness_app/models/widgets/creation/values/calories.dart';
 import 'package:fitness_app/models/widgets/creation/values/carbs.dart';
 import 'package:fitness_app/models/widgets/creation/values/fat.dart';

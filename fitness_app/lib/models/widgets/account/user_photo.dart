@@ -1,5 +1,5 @@
-import 'package:fitness_app/views/profile/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class UserPhoto extends StatelessWidget {
   const UserPhoto({super.key, required this.image});
@@ -16,8 +16,7 @@ class UserPhoto extends StatelessWidget {
           radius: 25,
         ),
         onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ProfilePage()));
+          context.push('/profile');
         },
       ),
     );

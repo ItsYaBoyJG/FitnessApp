@@ -5,11 +5,13 @@ class MainProgramCard extends StatelessWidget {
       {super.key,
       required this.image,
       required this.cardTitle,
-      required this.postTime});
+      required this.postTime,
+      required this.onTap});
 
   final String image;
   final String cardTitle;
   final String postTime;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -39,39 +41,41 @@ class MainProgramCard extends StatelessWidget {
         ],
       ),
       child: Align(
-        alignment: Alignment.bottomCenter,
-        child: Container(
-          height: 60.0,
-          padding: const EdgeInsets.all(20.0),
-          decoration: BoxDecoration(
-            color: Colors.grey[400],
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(20.0),
-              bottomRight: Radius.circular(20.0),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                cardTitle,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w700,
+          alignment: Alignment.bottomCenter,
+          child: GestureDetector(
+            onTap: onTap,
+            child: Container(
+              height: 60.0,
+              padding: const EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                color: Colors.grey[400],
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(20.0),
+                  bottomRight: Radius.circular(20.0),
                 ),
               ),
-              Text(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    cardTitle,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  /*  Text(
                 postTime,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 12.0,
                 ),
-              )
-            ],
-          ),
-        ),
-      ),
+              ) */
+                ],
+              ),
+            ),
+          )),
     );
   }
 }

@@ -33,7 +33,7 @@ class _HomeState extends ConsumerState<Home> {
           length: 3,
           child: Scaffold(
             body: const TabBarView(children: [
-              Programs(),
+              ProgramsTab(),
               DietTab(),
               ResultsTab(),
             ]),
@@ -66,7 +66,7 @@ class _HomeState extends ConsumerState<Home> {
         return const AddProfileInfo();
       }
     }, error: (error, stackTrace) {
-      return Text('error');
+      return ErrorWidget(error);
     }, loading: () {
       return const CircularProgressIndicator.adaptive();
     });

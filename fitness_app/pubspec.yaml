@@ -13,6 +13,8 @@ dependencies:
 
   permission_handler: ^11.3.1
 
+  image_picker: ^1.1.1
+
   health: ^11.1.0
   pedometer: ^4.0.2
 

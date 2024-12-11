@@ -1,6 +1,5 @@
-import 'package:fitness_app/models/data/workout_plan.dart';
+/*import 'package:fitness_app/models/data/workout_plan.dart';
 import 'package:fitness_app/models/widgets/containers/next_step.dart';
-import 'package:fitness_app/views/activity/activity_timer.dart';
 import 'package:flutter/material.dart';
 
 class ActivityDetail extends StatefulWidget {
@@ -188,4 +187,4 @@ class _ActivityDetailState extends State<ActivityDetail> {
       ),
     );
   }
-}
+}*/

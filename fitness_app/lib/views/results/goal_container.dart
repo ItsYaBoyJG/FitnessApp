@@ -151,7 +151,7 @@ class _GoalContainerState extends ConsumerState<GoalContainer> {
         );
       }
     }, error: (error, stackTrace) {
-      return Text('error');
+      return ErrorWidget(error);
     }, loading: () {
       return const CircularProgressIndicator.adaptive();
     });

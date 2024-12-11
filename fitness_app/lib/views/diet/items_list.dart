@@ -22,7 +22,7 @@ class _ItemsListState extends State<ItemsList> {
             return Card(
               child: ListTile(
                 leading: Text('${widget.listData}'),
-                trailing: Text('Item Serving Size'),
+                trailing: const Text('Item Serving Size'),
               ),
             );
           }),

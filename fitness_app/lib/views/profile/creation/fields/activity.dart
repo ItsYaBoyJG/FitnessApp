@@ -1,11 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_app/controllers/providers/state_providers.dart';
 import 'package:fitness_app/models/lists/user_info_list.dart';
 import 'package:fitness_app/models/widgets/creation/data_list_item.dart';
 import 'package:fitness_app/models/widgets/creation/profile_data_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ActivityContainer extends ConsumerStatefulWidget {
   const ActivityContainer({super.key});
@@ -19,15 +18,11 @@ class ActivityContainer extends ConsumerStatefulWidget {
 class _ActivityContainerState extends ConsumerState<ActivityContainer> {
   final UserInfoLists _userInfoLists = UserInfoLists();
 
-  String _activity = '';
-
   //Used to highlight the selected tile in the list view
   int? _isSelected;
 
   @override
   Widget build(BuildContext context) {
-    final activityLevel = ref.watch(userActivityLevelStateProvider);
-    final list = _userInfoLists.getActivityList;
     return ProfileDataList(
         textBoxHeight: 50,
         textBoxWidth: MediaQuery.of(context).size.width - 35,

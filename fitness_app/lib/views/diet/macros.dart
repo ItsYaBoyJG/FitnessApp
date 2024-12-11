@@ -93,7 +93,7 @@ class MacrosDisplay extends ConsumerWidget {
         );
       }
     }, error: (error, stackTrace) {
-      return Text('error');
+      return ErrorWidget(error);
     }, loading: () {
       return const Center(
         child: CircularProgressIndicator.adaptive(),

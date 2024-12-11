@@ -2,8 +2,8 @@ import 'package:fitness_app/models/calculations/calculations.dart';
 import 'package:fitness_app/controllers/providers/state_providers.dart';
 import 'package:fitness_app/models/widgets/creation/creation_summary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CreationSummary extends ConsumerStatefulWidget {
   const CreationSummary({super.key});

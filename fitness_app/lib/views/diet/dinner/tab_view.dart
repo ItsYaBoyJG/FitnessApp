@@ -84,9 +84,9 @@ class _DinnerTabViewState extends ConsumerState<DinnerTabView> {
                 return Container();
               }
             }, error: (error, stackTrace) {
-              return Text('error');
+              return ErrorWidget(error);
             }, loading: () {
-              return CircularProgressIndicator.adaptive();
+              return const CircularProgressIndicator.adaptive();
             }),
           ],
         ),

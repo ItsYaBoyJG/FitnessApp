@@ -5,8 +5,9 @@ class ErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text('Something went wrong. Please try again'),
-    );
+    return const Scaffold(
+        body: Center(
+      child: Text('Something went wrong. Please try again'),
+    ));
   }
 }

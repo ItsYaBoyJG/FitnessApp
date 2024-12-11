@@ -1,11 +1,10 @@
+/*
+import 'package:fitness_app/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ActivityTimer extends StatelessWidget {
-  final String image =
-      'https://i0.wp.com/fitnessrunning.net/wp-content/uploads/2016/10/woman-doing-plank.jpg';
-  final String tag = 'imageHeader';
-
   const ActivityTimer({super.key});
 
   @override
@@ -31,10 +30,10 @@ class Portrait extends StatelessWidget {
     return Column(
       children: [
         Stack(
-          children: <Widget>[
+          children: [
             Hero(
               tag: tag,
-              child: Container(
+              child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 270,
                 child: Image.network(
@@ -48,34 +47,34 @@ class Portrait extends StatelessWidget {
               right: 20,
               child: GestureDetector(
                 child: Container(
-                  padding: EdgeInsets.all(4.0),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.all(4.0),
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Color.fromRGBO(0, 0, 0, 0.7),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.close,
                     color: Colors.white,
                     size: 30.0,
                   ),
                 ),
                 onTap: () {
-                  Navigator.pop(context);
+                  context.pop();
                 },
               ),
             ),
           ],
         ),
         Container(
-          padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 20.0),
+          padding: const EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 20.0),
           height: size.height - 270.0,
           width: size.width,
           color: Colors.white,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
+            children: [
               Column(
-                children: <Widget>[
+                children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15.0),
                     child: Text(
@@ -106,7 +105,7 @@ class Portrait extends StatelessWidget {
                       animationDuration: 1200,
                       lineWidth: 16.0,
                       percent: 0.86,
-                      center: new Text(
+                      center: Text(
                         '43',
                         style: TextStyle(
                           fontSize: 45.0,
@@ -116,7 +115,7 @@ class Portrait extends StatelessWidget {
                       ),
                       backgroundColor: Colors.grey[300]!,
                       circularStrokeCap: CircularStrokeCap.round,
-                      linearGradient: LinearGradient(
+                      linearGradient: const LinearGradient(
                         colors: [
                           Color.fromRGBO(190, 130, 255, 1.0),
                           Color.fromRGBO(105, 139, 255, 1.0),
@@ -127,16 +126,16 @@ class Portrait extends StatelessWidget {
                 ],
               ),
               Row(
-                children: <Widget>[
+                children: [
                   Container(
                     width: 80.0,
                     height: 55.0,
-                    margin: EdgeInsets.only(right: 10.0),
+                    margin: const EdgeInsets.only(right: 10.0),
                     decoration: BoxDecoration(
-                      color: Color.fromRGBO(232, 242, 248, 1.0),
+                      color: const Color.fromRGBO(232, 242, 248, 1.0),
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.pause,
                       color: Color.fromRGBO(82, 126, 255, 1.0),
                       size: 35.0,
@@ -146,10 +145,10 @@ class Portrait extends StatelessWidget {
                     width: size.width - 130.0,
                     height: 55.0,
                     decoration: BoxDecoration(
-                      color: Color.fromRGBO(232, 242, 248, 1.0),
+                      color: const Color.fromRGBO(232, 242, 248, 1.0),
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Next',
                         style: TextStyle(
@@ -179,12 +178,10 @@ class Landscape extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Stack(
-      children: <Widget>[
-        Container(
-          child: Image.network(
-            image,
-            fit: BoxFit.fill,
-          ),
+      children: [
+        Image.network(
+          image,
+          fit: BoxFit.fill,
         ),
         Positioned(
           top: 40.0,
@@ -217,7 +214,7 @@ class Landscape extends StatelessWidget {
                 child: Container(
                     width: 45.0,
                     height: 45.0,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.black,
                       shape: BoxShape.circle,
                     ),
@@ -246,11 +243,11 @@ class Landscape extends StatelessWidget {
             child: Container(
                 width: 60.0,
                 height: 60.0,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.pause,
                   size: 38.0,
                 ))),
@@ -264,7 +261,7 @@ class Landscape extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(360.0),
             ),
-            child: Center(
+            child: const Center(
               child: Text(
                 'Next',
                 style: TextStyle(
@@ -280,3 +277,4 @@ class Landscape extends StatelessWidget {
     );
   }
 }
+*/

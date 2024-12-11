@@ -4,8 +4,9 @@ import 'package:fitness_app/models/widgets/buttons/app_button.dart';
 import 'package:fitness_app/models/widgets/creation/data_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AgeGenderContainer extends ConsumerStatefulWidget {
   const AgeGenderContainer({super.key});
@@ -27,10 +28,6 @@ class _AgeGenderContainerState extends ConsumerState<AgeGenderContainer> {
 
   @override
   Widget build(BuildContext context) {
-    final ageValue = ref.watch(userAgeStateProvider);
-    final genderValue = ref.watch(userGenderStateProvider);
-    final userName = ref.watch(userNameStateProvider);
-
     return Scaffold(
       appBar: AppBar(),
       body: Center(
@@ -79,7 +76,7 @@ class _AgeGenderContainerState extends ConsumerState<AgeGenderContainer> {
                         // explains why there's only two when it comes to calculating
                         // BMR and daily calories
                       },
-                      icon: Icon(Icons.question_mark)),
+                      icon: const Icon(Icons.question_mark)),
                 ],
               ),
             ),
@@ -132,9 +129,7 @@ class _AgeGenderContainerState extends ConsumerState<AgeGenderContainer> {
                       if (value != '' || value.length > 5) {
                         ref.read(userNameStateProvider.notifier).state =
                             _nameController.text;
-                      } else {
-                        print('length error');
-                      }
+                      } else {}
                     },
                   )
                 ],

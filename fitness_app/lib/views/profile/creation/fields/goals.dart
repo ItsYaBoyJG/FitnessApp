@@ -2,10 +2,10 @@ import 'package:fitness_app/controllers/providers/state_providers.dart';
 import 'package:fitness_app/models/lists/user_info_list.dart';
 import 'package:fitness_app/models/widgets/creation/data_list_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:fitness_app/models/widgets/creation/profile_data_list.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class GoalsContainer extends ConsumerStatefulWidget {
   const GoalsContainer({super.key});
@@ -24,7 +24,6 @@ class _GoalsContainerState extends ConsumerState<GoalsContainer> {
 
   @override
   Widget build(BuildContext context) {
-    final goal = ref.watch(userGoalStateProvider);
     return ProfileDataList(
         textBoxHeight: 50,
         textBoxWidth: MediaQuery.of(context).size.width - 45,
