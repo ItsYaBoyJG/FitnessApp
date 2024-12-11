@@ -40,7 +40,6 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 height: MediaQuery.of(context).size.height * 0.15,
                 width: MediaQuery.of(context).size.width - 10,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 163, 144, 215),
                   borderRadius: BorderRadius.circular(16.0),
                 ),
                 child: Row(
@@ -68,7 +67,6 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       width: MediaQuery.of(context).size.width - 20,
                       margin: const EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 196, 184, 234),
                         borderRadius: BorderRadius.circular(16.0),
                       ),
                       child: Column(
@@ -149,7 +147,6 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       width: MediaQuery.of(context).size.width - 20,
                       margin: const EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 148, 123, 231),
                         borderRadius: BorderRadius.circular(16.0),
                       ),
                       child: savedRecipes.when(data: (data) {
@@ -191,7 +188,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                   ],
                 ),
               ),
-              Row(
+              /*   Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
@@ -211,7 +208,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 cardTitle: 'For You',
                 postTime: '8 min',
                 onTap: () {},
-              ),
+              ),*/
             ],
           ),
         );
