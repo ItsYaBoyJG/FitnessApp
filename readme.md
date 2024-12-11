@@ -1,14 +1,13 @@
 An on going project demonstrating how a fitness app can be made with Flutter. 
 
-Current Features:
+## Current Features:
+ ### Nutrition Tracking Page
 
-Nutrition Tracking Page
+ ### Goal Tracking Page
 
-Goal Tracking Page
+ ### Workout Program Page
 
-Workout Program Page
-
-Firebase Backend
+ ### Firebase Backend
 
 
 
