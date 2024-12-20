@@ -140,8 +140,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {
                     try {
-                      _userAuth.registerUser(emailTextController.text,
-                          passwordTextController.text);
+                      Future.delayed(const Duration(milliseconds: 200), () {
+                        _userAuth.registerUser(emailTextController.text,
+                            passwordTextController.text);
+                      });
                     } on FirebaseAuthException catch (error) {
                       errorMessage = error.code;
                     }
