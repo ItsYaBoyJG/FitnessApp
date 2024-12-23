@@ -3,13 +3,13 @@
  - Using Firebase ([Cloud Firestore](https://pub.dev/packages/cloud_firestore), [Firebase Auth](https://pub.dev/packages/firebase_auth)), [Riverpod](https://pub.dev/packages/riverpod), [Open Food Facts](https://pub.dev/packages/openfoodfacts), and [Health](https://pub.dev/packages/health)
 
 
-Diet Tab:[alt text](https://github.com/ItsYaBoyJG/FitnessApp/images/diet_tab.png) 
+Diet Tab:[alt text](https://github.com/ItsYaBoyJG/FitnessApp/tree/main/images/diet_tab.png) 
 
-[alt text](https://github.com/ItsYaBoyJG/FitnessApp/images/adding_items.png) 
+[alt text](https://github.com/ItsYaBoyJG/FitnessApp/tree/main/images/adding_items.png) 
 
-[alt text](https://github.com/ItsYaBoyJG/FitnessApp/images/selected_items.png) 
+[alt text](https://github.com/ItsYaBoyJG/FitnessApp/tree/main/images/selected_items.png) 
 
-Results Tab: [alt text](https://github.com/ItsYaBoyJG/FitnessApp/images/results_tab.png) 
+Results Tab: [alt text](https://github.com/ItsYaBoyJG/FitnessApp/tree/main/images/results_tab.png) 
 
 
 # Current Features:
