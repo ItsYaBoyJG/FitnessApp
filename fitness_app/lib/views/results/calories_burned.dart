@@ -4,6 +4,7 @@ import 'package:fitness_app/controllers/providers/future_providers.dart';
 import 'package:fitness_app/models/data/chart_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
+import 'package:health/health.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
@@ -21,10 +22,14 @@ class CaloriesBurned extends ConsumerStatefulWidget {
 class _CaloriesBurnedState extends ConsumerState<CaloriesBurned> {
   final UserAuth _userAuth = UserAuth();
 
+  Health _health = Health();
+
   double _maxValue = 0.0;
   double _currentValue = 0.0;
 
   List<ChartData> chartData = [];
+
+  getCalories() async {}
 
   void currentCalorieGoal(
       Map<int, QueryDocumentSnapshot<Map<String, dynamic>>> data) {

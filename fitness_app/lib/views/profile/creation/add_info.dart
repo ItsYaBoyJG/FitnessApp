@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fitness_app/controllers/providers/state_providers.dart';
 import 'package:fitness_app/models/widgets/buttons/app_button.dart';
 import 'package:fitness_app/utils/health_data_types.dart';
 import 'package:fitness_app/views/profile/creation/fields/age_gender.dart';
@@ -21,54 +22,86 @@ class _AddProfileInfoState extends ConsumerState<AddProfileInfo> {
   //TODO: add more of a add info start page rather than just having it
   // direct users directly to age and gender container. Also add the option
   // to add Phone's Health Data
-  Health _health = Health();
-  HealthDataTypes _healthDataTypes = HealthDataTypes();
+  final Health _health = Health();
 
-  getHealthData() async {
-    if (Platform.isAndroid) {
-      List<HealthDataType> types = _healthDataTypes.getAndroidTypes();
-      bool requested = await _health
-          .requestAuthorization(types, permissions: [HealthDataAccess.READ]);
+  String _weight = '';
 
-      if (requested) {
-        // https://yusufbiberoglu.medium.com/flutter-health-package-usage-with-tutorial-video-822db8eafbb3
-      } else {}
-    } else {}
-  }
+  String _height = '';
+
+  String _date = '';
 
   bool _addManuallySelected = false;
 
+  void _requestHealthDataAccess() async {
+    String weight = '';
+    String height = '';
+    String birth = '';
+    if (Platform.isAndroid) {
+      if (await Permission.activityRecognition.request().isGranted) {
+        weight = _health.getHealthDataFromTypes(types: [
+          HealthDataType.WEIGHT,
+        ], startTime: DateTime.now(), endTime: DateTime.now()).toString();
+
+        height = _health.getHealthDataFromTypes(types: [
+          HealthDataType.HEIGHT,
+        ], startTime: DateTime.now(), endTime: DateTime.now()).toString();
+        birth = _health.getHealthDataFromTypes(types: [
+          HealthDataType.BIRTH_DATE,
+        ], startTime: DateTime.now(), endTime: DateTime.now()).toString();
+        setState(() {
+          _weight = weight;
+          _height = height;
+          _date = birth;
+        });
+      } else {
+        //showHealthDataRequestDialog
+      }
+    } else {
+      birth = _health.requestAuthorization([
+        HealthDataType.BIRTH_DATE,
+      ], permissions: [
+        HealthDataAccess.READ
+      ]).toString();
+
+      height = _health.getHealthDataFromTypes(types: [
+        HealthDataType.HEIGHT,
+      ], startTime: DateTime(2000), endTime: DateTime.now()).toString();
+      weight = _health.getHealthDataFromTypes(types: [
+        HealthDataType.WEIGHT,
+      ], startTime: DateTime.now(), endTime: DateTime.now()).toString();
+      setState(() {
+        _weight = weight;
+        _height = height;
+        _date = birth;
+      });
+    }
+  }
+
+  void _configure() {
+    try {
+      _health.configure();
+      if (Platform.isAndroid) {
+        _health.getHealthConnectSdkStatus();
+      } else {
+        return;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return _addManuallySelected == false
-        ? Scaffold(
-            appBar: AppBar(),
-            body: Column(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.10,
-                  width: MediaQuery.of(context).size.width - 80,
-                  padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 20.0),
-                  child: const Text(
-                      'You can add your health and fitness data, and your information'
-                      ' from either your health app on your device. Or you can enter it manaully. '),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    AppButton(onPressed: () {}, text: 'Use Health App'),
-                    AppButton(
-                        onPressed: () {
-                          setState(() {
-                            _addManuallySelected = true;
-                          });
-                        },
-                        text: 'Enter Manually')
-                  ],
-                )
-              ],
-            ),
-          )
-        : const AgeGenderContainer();
+    return AgeGenderContainer();
   }
 }

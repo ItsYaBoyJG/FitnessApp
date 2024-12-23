@@ -1,6 +1,15 @@
-# What is this? 
+# A Goal Tracking and Nutrition Tracking Mobile Application
  - An on going project demonstrating how a fitness app can be made with Flutter.
- - Using Firebase (Cloud Firestore, Firebase Auth), Riverpod, Open Food Facts,
+ - Using Firebase ([Cloud Firestore](https://pub.dev/packages/cloud_firestore), [Firebase Auth](https://pub.dev/packages/firebase_auth)), [Riverpod](https://pub.dev/packages/riverpod), [Open Food Facts](https://pub.dev/packages/openfoodfacts), and [Health](https://pub.dev/packages/health)
+
+
+Diet Tab:[alt text](https://github.com/ItsYaBoyJG/FitnessApp/images/diet_tab.png) 
+
+[alt text](https://github.com/ItsYaBoyJG/FitnessApp/images/adding_items.png) 
+
+[alt text](https://github.com/ItsYaBoyJG/FitnessApp/images/selected_items.png) 
+
+Results Tab: [alt text](https://github.com/ItsYaBoyJG/FitnessApp/images/results_tab.png) 
 
 
 # Current Features:
@@ -33,6 +42,8 @@
  - [] Implement Firebase Storage to allow users to add photos.
 
 
+## Features being currently worked on:
+  - Syncing Health data from default phone health app
 
 
 ### Suggestions, Improvements or Anything else?
