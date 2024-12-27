@@ -1,8 +1,8 @@
 import 'package:openfoodfacts/openfoodfacts.dart';
 
 class OffFunctions {
-  static const String _email = 'bigopenfoodfactsmail@gmail.com';
-  static const String _password = 'OpenFoodFacts';
+  static const String _email = '';
+  static const String _password = '';
   static const _user = User(userId: _email, password: _password);
 
   void setUserAgent() {
