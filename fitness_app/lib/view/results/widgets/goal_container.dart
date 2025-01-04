@@ -1,7 +1,9 @@
 import 'package:fitness_app/data/auth/user_auth.dart';
 import 'package:fitness_app/providers/future_providers.dart';
 import 'package:fitness_app/models/widgets/dialogs/edit_goal.dart';
+import 'package:fitness_app/utils/health_data_types.dart';
 import 'package:flutter/material.dart';
+import 'package:health/health.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class GoalContainer extends ConsumerStatefulWidget {
@@ -15,6 +17,19 @@ class GoalContainer extends ConsumerStatefulWidget {
 
 class _GoalContainerState extends ConsumerState<GoalContainer> {
   final UserAuth _userAuth = UserAuth();
+
+  Health _health = Health();
+
+  _getWorkoutData(DateTime lastSync) async {
+    List list = await _health.getHealthDataFromTypes(
+        types: [HealthDataType.WORKOUT],
+        startTime: lastSync,
+        endTime: DateTime.now());
+
+    print(list);
+
+    return list;
+  }
 
   @override
   Widget build(BuildContext context) {

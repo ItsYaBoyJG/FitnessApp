@@ -1,11 +1,15 @@
-import 'package:fitness_app/data/auth/user_auth.dart';
-import 'package:fitness_app/providers/future_providers.dart';
+import 'dart:io';
+
+import 'package:fitness_app/backend/auth/user_auth.dart';
+import 'package:fitness_app/controllers/providers/future_providers.dart';
 import 'package:fitness_app/models/widgets/buttons/app_button.dart';
 import 'package:fitness_app/models/widgets/containers/header.dart';
 import 'package:fitness_app/view/results/widgets/calories_burned.dart';
 import 'package:fitness_app/view/results/widgets/goal_container.dart';
 import 'package:flutter/material.dart';
+import 'package:health/health.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ResultsTab extends ConsumerStatefulWidget {
   const ResultsTab({super.key});
@@ -21,9 +25,60 @@ class _ResultsTabState extends ConsumerState<ResultsTab> {
 
   final DateTime _selectedDay = DateTime.now();
 
+  Health _health = Health();
+
+  _requestPermissions() async {
+    if (Platform.isAndroid) {
+      await Permission.accessNotificationPolicy.request();
+    } else {
+      await _health.requestAuthorization([
+        HealthDataType.TOTAL_CALORIES_BURNED,
+        HealthDataType.STEPS,
+        HealthDataType.WORKOUT,
+      ], permissions: [
+        HealthDataAccess.READ
+      ]);
+    }
+  }
+
+  _checkPermissions() async {
+    if (Platform.isAndroid) {
+      if (await Permission.activityRecognition.isGranted) {
+        return;
+      } else {
+        _requestPermissions();
+      }
+    } else {
+      if (await _health.hasPermissions([
+            HealthDataType.TOTAL_CALORIES_BURNED,
+            HealthDataType.STEPS,
+            HealthDataType.WORKOUT,
+          ]) ==
+          true) {
+        return;
+      } else {
+        _requestPermissions();
+      }
+    }
+  }
+
+  void _configure() {
+    try {
+      _health.configure();
+      if (Platform.isAndroid) {
+        _health.getHealthConnectSdkStatus();
+      } else {
+        return;
+      }
+      _checkPermissions();
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   void initState() {
-    //  configure();
+    _configure();
     super.initState();
   }
 
