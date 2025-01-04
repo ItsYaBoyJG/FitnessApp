@@ -1,14 +1,14 @@
-import 'package:fitness_app/controllers/providers/stream_providers.dart';
+import 'package:fitness_app/providers/stream_providers.dart';
 import 'package:fitness_app/utils/splash_screen.dart';
-import 'package:fitness_app/views/auth/onboarding.dart';
-import 'package:fitness_app/views/home.dart';
-import 'package:fitness_app/views/profile/creation/creation_summary.dart';
-import 'package:fitness_app/views/profile/creation/fields/activity.dart';
-import 'package:fitness_app/views/profile/creation/fields/goal_reasons.dart';
-import 'package:fitness_app/views/profile/creation/fields/goals.dart';
-import 'package:fitness_app/views/profile/creation/fields/height_weight.dart';
-import 'package:fitness_app/views/profile/creation/totals/totals.dart';
-import 'package:fitness_app/views/profile/profile.dart';
+import 'package:fitness_app/view/auth/onboarding.dart';
+import 'package:fitness_app/view/home.dart';
+import 'package:fitness_app/view/profile/creation/creation_summary.dart';
+import 'package:fitness_app/view/profile/creation/fields/activity.dart';
+import 'package:fitness_app/view/profile/creation/fields/goal_reasons.dart';
+import 'package:fitness_app/view/profile/creation/fields/goals.dart';
+import 'package:fitness_app/view/profile/creation/fields/height_weight.dart';
+import 'package:fitness_app/view/profile/creation/totals/totals.dart';
+import 'package:fitness_app/view/profile/profile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 

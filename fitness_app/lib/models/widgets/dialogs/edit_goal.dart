@@ -1,7 +1,7 @@
-import 'package:fitness_app/backend/auth/user_auth.dart';
-import 'package:fitness_app/backend/writes/write_to_db.dart';
-import 'package:fitness_app/models/lists/user_info_list.dart';
-import 'package:fitness_app/models/widgets/creation/data_list_item.dart';
+import 'package:fitness_app/data/auth/user_auth.dart';
+import 'package:fitness_app/data/writes/write_to_db.dart';
+import 'package:fitness_app/utils/lists/user_info_list.dart';
+import 'package:fitness_app/view/profile/creation/widgets/data_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

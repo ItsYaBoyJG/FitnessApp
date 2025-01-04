@@ -1,5 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fitness_app/controllers/http_calls/off_functions.dart';
+import 'package:fitness_app/data/http/off_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/app.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
