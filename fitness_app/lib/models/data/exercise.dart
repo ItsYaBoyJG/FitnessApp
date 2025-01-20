@@ -13,19 +13,8 @@ class Exercise {
   final String date;
   final int caloriesBurned;
 
-  factory Exercise.fromJson(Map<String, dynamic> json) {
-    return Exercise(
-      uid: json['uid'],
-      date: json['date'],
-      caloriesBurned: json['caloriesBurned'],
-    );
-  }
+  factory Exercise.fromJson(Map<String, dynamic> json) =>
+      _$ExerciseFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    return {
-      'uid': uid,
-      'date': date,
-      'caloriesBurned': caloriesBurned,
-    };
-  }
+  Map<String, dynamic> toJson() => _$ExerciseToJson(this);
 }

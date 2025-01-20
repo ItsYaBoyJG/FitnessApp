@@ -11,7 +11,7 @@ Recipe _$RecipeFromJson(Map<String, dynamic> json) => Recipe(
       title: json['title'] as String,
       description: json['description'] as String,
       imageUrl: json['imageUrl'] as String,
-      cookingTime: json['cookingTime'],
+      cookingTime: json['cookingTime'] as String,
       components: (json['components'] as List<dynamic>)
           .map((e) => RecipeComponent.fromJson(e as Map<String, dynamic>))
           .toList(),

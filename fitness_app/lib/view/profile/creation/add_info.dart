@@ -1,9 +1,6 @@
 import 'dart:io';
 
-import 'package:fitness_app/controllers/providers/state_providers.dart';
-import 'package:fitness_app/models/widgets/buttons/app_button.dart';
-import 'package:fitness_app/utils/health_data_types.dart';
-import 'package:fitness_app/views/profile/creation/fields/age_gender.dart';
+import 'package:fitness_app/view/profile/creation/fields/age_gender.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:health/health.dart';

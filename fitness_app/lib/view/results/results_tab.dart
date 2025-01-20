@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:fitness_app/backend/auth/user_auth.dart';
-import 'package:fitness_app/controllers/providers/future_providers.dart';
+import 'package:fitness_app/data/auth/user_auth.dart';
 import 'package:fitness_app/models/widgets/buttons/app_button.dart';
 import 'package:fitness_app/models/widgets/containers/header.dart';
+import 'package:fitness_app/providers/future_providers.dart';
 import 'package:fitness_app/view/results/widgets/calories_burned.dart';
 import 'package:fitness_app/view/results/widgets/goal_container.dart';
 import 'package:flutter/material.dart';

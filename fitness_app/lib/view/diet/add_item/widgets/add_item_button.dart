@@ -123,8 +123,8 @@ class _AddItemButtonState extends ConsumerState<AddItemButton> {
                                         calories, protein, fat, carbs);
 
                                     context.pop();
-                                    ref.invalidate(
-                                        dailyMacroAmountsStreamProvider);
+                                  //  ref.invalidate(
+                                  //      dailyMacroAmountsStreamProvider);
                                   } on Exception catch (e) {}
                                 },
                                 child: const Text('Add item'))
