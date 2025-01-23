@@ -1,16 +1,14 @@
 import 'package:fitness_app/data/auth/user_auth.dart';
 import 'package:fitness_app/providers/future_providers.dart';
-import 'package:fitness_app/providers/state_providers.dart';
 import 'package:fitness_app/view/diet/breakfast_view.dart';
+import 'package:fitness_app/view/diet/calendar.dart';
 import 'package:fitness_app/view/diet/dinner_view.dart';
 import 'package:fitness_app/view/diet/lunch_view.dart';
-import 'package:fitness_app/view/diet/widgets/macros.dart';
+import 'package:fitness_app/view/diet/macros_display.dart';
 import 'package:fitness_app/view/diet/snack_view.dart';
-import 'package:fitness_app/view/diet/widgets/calendar.dart';
 import 'package:fitness_app/widgets/containers/header.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class DietTab extends ConsumerStatefulWidget {
   const DietTab({super.key});
@@ -23,9 +21,6 @@ class DietTab extends ConsumerStatefulWidget {
 
 class _DietTabState extends ConsumerState<DietTab> {
   final UserAuth _userAuth = UserAuth();
-
-  DateTime? _selectedDay;
-  DateTime _focusedDay = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -93,29 +88,7 @@ class _DietTabState extends ConsumerState<DietTab> {
                   ),
                   body: Column(
                     children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.18,
-                        width: MediaQuery.of(context).size.width - 5,
-                        child: CalendarDisplay(
-                          focusedDay: _focusedDay,
-                          onDaySelected: (focusedDay, selectedDay) {
-                            if (!isSameDay(_selectedDay, selectedDay)) {
-                              setState(() {
-                                _selectedDay = selectedDay;
-                                _focusedDay = focusedDay;
-                              });
-                              ref.read(dateTimeProvider.notifier).state =
-                                  selectedDay;
-                            }
-                          },
-                          onPageChanged: (focusedDay) {
-                            _focusedDay = focusedDay;
-                          },
-                          selectedDayPredicate: (selectedDay) {
-                            return isSameDay(_selectedDay, selectedDay);
-                          },
-                        ),
-                      ),
+                      const DietCalendar(),
                       Container(
                         height: MediaQuery.of(context).size.height * 0.08,
                         width: MediaQuery.of(context).size.width - 5,

@@ -1,12 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_app/providers/state_providers.dart';
 import 'package:fitness_app/utils/user_info_list.dart';
-import 'package:fitness_app/widgets/buttons/app_button.dart';
 import 'package:fitness_app/view/account/widgets/data_list_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class GenderField extends StatefulHookConsumerWidget {

@@ -1,10 +1,8 @@
 import 'package:fitness_app/providers/state_providers.dart';
 import 'package:fitness_app/utils/user_info_list.dart';
 import 'package:fitness_app/view/account/widgets/data_list_item.dart';
-import 'package:fitness_app/view/account/widgets/profile_data_list.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class LoseWeightReasons extends ConsumerStatefulWidget {
   const LoseWeightReasons({super.key, required this.index});
