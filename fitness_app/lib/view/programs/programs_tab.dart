@@ -1,5 +1,5 @@
-import 'package:fitness_app/models/widgets/containers/header.dart';
-import 'package:fitness_app/models/widgets/account/user_photo.dart';
+import 'package:fitness_app/widgets/containers/header.dart';
+import 'package:fitness_app/widgets/account/user_photo.dart';
 import 'package:fitness_app/view/programs/suggestions/c_suggestion.dart';
 import 'package:fitness_app/view/programs/suggestions/lb_suggestion.dart';
 import 'package:fitness_app/view/programs/suggestions/main_suggestion.dart';

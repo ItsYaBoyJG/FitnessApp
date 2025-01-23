@@ -1,6 +1,6 @@
 import 'package:fitness_app/providers/future_providers.dart';
 import 'package:fitness_app/view/diet/diet_tab.dart';
-import 'package:fitness_app/view/profile/creation/add_info.dart';
+import 'package:fitness_app/view/account/add_info.dart';
 import 'package:fitness_app/view/programs/programs_tab.dart';
 import 'package:fitness_app/view/results/results_tab.dart';
 import 'package:flutter/material.dart';

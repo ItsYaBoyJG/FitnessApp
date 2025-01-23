@@ -1,6 +1,6 @@
 import 'package:fitness_app/data/auth/user_auth.dart';
 import 'package:fitness_app/providers/future_providers.dart';
-import 'package:fitness_app/models/widgets/dialogs/edit_goal.dart';
+import 'package:fitness_app/widgets/dialogs/edit_goal.dart';
 import 'package:fitness_app/utils/health_data_types.dart';
 import 'package:flutter/material.dart';
 import 'package:health/health.dart';

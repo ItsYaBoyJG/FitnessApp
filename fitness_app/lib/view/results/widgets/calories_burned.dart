@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fitness_app/data/auth/user_auth.dart';
 import 'package:fitness_app/providers/future_providers.dart';
-import 'package:fitness_app/models/data/chart_data.dart';
+import 'package:fitness_app/models/chart_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:health/health.dart';

@@ -1,5 +1,5 @@
-import 'package:fitness_app/providers/state_providers.dart';
 import 'package:fitness_app/utils/calculations/calculations.dart';
+import 'package:fitness_app/providers/state_providers.dart';
 import 'package:fitness_app/view/account/widgets/creation_summary.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

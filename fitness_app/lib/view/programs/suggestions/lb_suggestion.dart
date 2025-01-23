@@ -1,6 +1,6 @@
 import 'package:fitness_app/providers/future_providers.dart';
-import 'package:fitness_app/models/widgets/containers/image_card_with_internal.dart';
-import 'package:fitness_app/models/widgets/containers/section.dart';
+import 'package:fitness_app/widgets/containers/image_card_with_internal.dart';
+import 'package:fitness_app/widgets/containers/section.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

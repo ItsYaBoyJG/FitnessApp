@@ -1,4 +1,4 @@
-import 'package:fitness_app/models/widgets/containers/main_program_card.dart';
+import 'package:fitness_app/widgets/containers/main_program_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

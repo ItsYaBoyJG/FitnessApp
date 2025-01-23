@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_app/data/streams/db_streams.dart';
-import 'package:fitness_app/utils/equatables/date_id_eq.dart';
+import 'package:fitness_app/utils/date_id_equatable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final dbStreamsProvider = Provider((ref) => DbStreams());

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fitness_app/models/data/recipe.dart';
+import 'package:fitness_app/models/recipe.dart';
 
 class DbFutures {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;

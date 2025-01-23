@@ -1,8 +1,8 @@
 import 'package:fitness_app/data/auth/user_auth.dart';
 import 'package:fitness_app/providers/state_providers.dart';
 import 'package:fitness_app/providers/stream_providers.dart';
-import 'package:fitness_app/utils/equatables/date_id_eq.dart';
-import 'package:fitness_app/view/diet/add_item/additempage.dart';
+import 'package:fitness_app/utils/date_id_equatable.dart';
+import 'package:fitness_app/view/diet/additempage.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

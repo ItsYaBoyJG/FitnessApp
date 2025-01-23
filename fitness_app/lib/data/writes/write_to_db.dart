@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fitness_app/models/data/recipe.dart';
-import 'package:fitness_app/models/data/user.dart';
+import 'package:fitness_app/models/recipe.dart';
+import 'package:fitness_app/models/user.dart';
 
 class WriteToDb {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;

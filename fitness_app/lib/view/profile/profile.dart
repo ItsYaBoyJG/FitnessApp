@@ -1,7 +1,7 @@
 import 'package:fitness_app/data/auth/user_auth.dart';
 import 'package:fitness_app/providers/future_providers.dart';
-import 'package:fitness_app/models/widgets/containers/main_program_card.dart';
-import 'package:fitness_app/models/widgets/dialogs/edit_goal.dart';
+import 'package:fitness_app/widgets/containers/main_program_card.dart';
+import 'package:fitness_app/widgets/dialogs/edit_goal.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

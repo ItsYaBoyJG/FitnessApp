@@ -7,7 +7,7 @@ import 'package:fitness_app/view/diet/lunch_view.dart';
 import 'package:fitness_app/view/diet/widgets/macros.dart';
 import 'package:fitness_app/view/diet/snack_view.dart';
 import 'package:fitness_app/view/diet/widgets/calendar.dart';
-import 'package:fitness_app/models/widgets/containers/header.dart';
+import 'package:fitness_app/widgets/containers/header.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:table_calendar/table_calendar.dart';

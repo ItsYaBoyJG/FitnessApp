@@ -1,4 +1,4 @@
-import 'package:fitness_app/models/widgets/containers/circle_badge.dart';
+import 'package:fitness_app/widgets/containers/circle_badge.dart';
 import 'package:flutter/material.dart';
 
 class Achievements extends StatelessWidget {
