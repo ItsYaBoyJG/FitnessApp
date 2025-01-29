@@ -43,9 +43,6 @@ Results Tab: [Image](https://github.com/ItsYaBoyJG/FitnessApp/tree/main/images/r
 
 
 ## Features being currently worked on:
-  - Syncing Health data from default phone health app
+  
 
-
-### Suggestions, Improvements or Anything else?
-   - Submit an issue or pull reguest.
 
