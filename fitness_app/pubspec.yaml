@@ -15,7 +15,7 @@ dependencies:
 
   image_picker: ^1.1.1
 
-  health: ^11.1.0
+  health: ^12.0.1
   pedometer: ^4.0.2
 
   cloud_firestore: ^5.4.4

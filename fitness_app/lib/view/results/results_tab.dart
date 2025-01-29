@@ -27,59 +27,70 @@ class _ResultsTabState extends ConsumerState<ResultsTab> {
 
   Health _health = Health();
 
-  _requestPermissions() async {
-    if (Platform.isAndroid) {
-      await Permission.accessNotificationPolicy.request();
-    } else {
-      await _health.requestAuthorization([
-        HealthDataType.TOTAL_CALORIES_BURNED,
-        HealthDataType.STEPS,
-        HealthDataType.WORKOUT,
-      ], permissions: [
-        HealthDataAccess.READ
-      ]);
-    }
+  int _steps = 0;
+
+  @override
+  void initState() {
+    _configure();
+    super.initState();
   }
 
-  _checkPermissions() async {
-    if (Platform.isAndroid) {
-      if (await Permission.activityRecognition.isGranted) {
-        return;
-      } else {
-        _requestPermissions();
-      }
-    } else {
-      if (await _health.hasPermissions([
-            HealthDataType.TOTAL_CALORIES_BURNED,
-            HealthDataType.STEPS,
-            HealthDataType.WORKOUT,
-          ]) ==
-          true) {
-        return;
-      } else {
-        _requestPermissions();
-      }
-    }
-  }
-
-  void _configure() {
+  void _configure() async {
     try {
       _health.configure();
       if (Platform.isAndroid) {
         _health.getHealthConnectSdkStatus();
-      } else {
-        return;
-      }
+      } else {}
       _checkPermissions();
     } catch (e) {
       print(e);
     }
   }
 
-  @override
-  void initState() {
-    _configure();
-    super.initState();
+  void _requestPermissions() async {
+    if (Platform.isAndroid) {
+      await Permission.activityRecognition.request();
+    } else {
+      await _health.requestAuthorization([HealthDataType.STEPS],
+          permissions: [HealthDataAccess.READ]);
+    }
+  }
+
+  void _checkPermissions() async {
+    if (Platform.isAndroid) {
+      if (await Permission.activityRecognition.isGranted) {
+        _stepsData();
+      } else {
+        _requestPermissions();
+      }
+    } else {
+      if (await _health.hasPermissions([HealthDataType.STEPS]) == true) {
+        _stepsData();
+      } else {
+        _requestPermissions();
+      }
+    }
+  }
+
+  void _stepsData() async {
+    int? steps;
+
+    final now = DateTime.now();
+    final yesterday = now.subtract(Duration(hours: 24));
+
+    if (await _health.hasPermissions([HealthDataType.STEPS]) == true) {
+      try {
+        steps = await _health.getTotalStepsInInterval(yesterday, now);
+      } catch (e) {
+        print(e);
+      }
+    } else {
+      _requestPermissions();
+    }
+
+    setState(() {
+      _steps = steps!;
+    });
   }
 
   @override
