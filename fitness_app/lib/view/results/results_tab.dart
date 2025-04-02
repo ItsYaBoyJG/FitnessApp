@@ -103,6 +103,7 @@ class _ResultsTabState extends ConsumerState<ResultsTab> {
         if (data.data() != null && data.exists == true) {
           Map<String, dynamic> goalData = data.data() as Map<String, dynamic>;
           return SingleChildScrollView(
+            padding: const EdgeInsets.all(10.0),
             child: Container(
               padding: const EdgeInsets.only(top: 20.0),
               child: SafeArea(
@@ -172,21 +173,28 @@ class _ResultsTabState extends ConsumerState<ResultsTab> {
           );
         } else {
           return Container(
+            margin: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(4.0),
             height: MediaQuery.of(context).size.height * 0.50,
             width: MediaQuery.of(context).size.width - 20,
             decoration:
                 BoxDecoration(borderRadius: BorderRadius.circular(14.0)),
-            child: Column(
-              children: [
-                const Text(
-                    'It looks like you do not have any information that would '
-                    'listed on this page. You can go create it, however.'),
-                AppButton(
-                    onPressed: () {
-                      //TODO: add navigation to goal page
-                    },
-                    text: 'Set a goal')
-              ],
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 200,
+                  ),
+                  const Text(
+                      'It looks like you do not have any information that would '
+                      'listed on this page. You can add one.'),
+                  AppButton(
+                      onPressed: () {
+                        //TODO: add navigation to goal page
+                      },
+                      text: 'Set a goal')
+                ],
+              ),
             ),
           );
         }

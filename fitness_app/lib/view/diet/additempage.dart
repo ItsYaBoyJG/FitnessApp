@@ -1,4 +1,4 @@
-import 'package:fitness_app/data/http/off_functions.dart';
+import 'package:fitness_app/data/off_functions/off_functions.dart';
 import 'package:fitness_app/view/diet/widgets/search_bar.dart';
 import 'package:fitness_app/view/diet/widgets/add_item_button.dart';
 import 'package:fitness_app/view/diet/widgets/search_list.dart';

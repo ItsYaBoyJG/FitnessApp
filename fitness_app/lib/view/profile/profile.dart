@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_app/data/auth/user_auth.dart';
 import 'package:fitness_app/providers/future_providers.dart';
 import 'package:fitness_app/widgets/dialogs/edit_goal.dart';
@@ -30,7 +31,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           appBar: AppBar(
             title: const Text('Profile'),
             actions: [
-              OutlinedButton(onPressed: () {}, child: const Text('Account'))
+              OutlinedButton(
+                  onPressed: () {
+                    FirebaseAuth.instance.signOut();
+                  },
+                  child: const Text('Account'))
             ],
           ),
           body: ListView(

@@ -1,5 +1,6 @@
 import 'package:fitness_app/data/auth/user_auth.dart';
 import 'package:fitness_app/data/writes/write_to_db.dart';
+import 'package:fitness_app/providers/future_providers.dart';
 import 'package:fitness_app/providers/state_providers.dart';
 import 'package:fitness_app/view/account/widgets/values/calories.dart';
 import 'package:fitness_app/view/account/widgets/values/carbs.dart';
@@ -105,6 +106,7 @@ class _DailyTotalsSumPageState extends ConsumerState<DailyTotalsSumPage> {
                   DateTime.now(),
                   null);
 
+              ref.invalidate(userDailyMacroTotalsProvider);
               // ref.invalidate(userProfileData);
               Future.delayed(const Duration(milliseconds: 200));
               context.go('/');
