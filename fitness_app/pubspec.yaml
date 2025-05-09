@@ -22,7 +22,9 @@ dependencies:
   firebase_core: ^3.6.0
   #firebase_storage: ^12.3.4
   firebase_auth: ^5.3.1
-  #shared_preferences: ^2.3.3
+
+  hive_ce: ^2.11.1
+  hive_ce_flutter: ^2.3.0
 
   hooks_riverpod: ^2.6.1
   flutter_hooks: ^0.20.5
@@ -49,6 +51,10 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   json_serializable: ^6.9.3
   build_runner: ^2.4.14
+  #riverpod_test: ^0.1.9
+  fake_cloud_firestore: ^3.1.0
+  test: ^1.25.15
+  hive_ce_generator: ^1.9.1
 
 flutter:
   uses-material-design: true

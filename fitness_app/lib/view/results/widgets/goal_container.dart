@@ -34,7 +34,7 @@ class _GoalContainerState extends ConsumerState<GoalContainer> {
   @override
   Widget build(BuildContext context) {
     final userProfileData =
-        ref.watch(userProfileDataProvider(_userAuth.getUserId()));
+        ref.watch(userProfileDataProvider(_userAuth.getUserId()!));
 
     return userProfileData.when(data: (data) {
       if (data.data() != null &&

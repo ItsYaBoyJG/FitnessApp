@@ -4,7 +4,7 @@ import 'package:fitness_app/view/account/activity_view.dart';
 import 'package:fitness_app/view/account/goal_reasons_view.dart';
 import 'package:fitness_app/view/account/goals_view.dart';
 import 'package:fitness_app/view/onboarding/onboarding.dart';
-import 'package:fitness_app/view/home.dart';
+import 'package:fitness_app/view/home/home.dart';
 import 'package:fitness_app/view/account/creation_summary.dart';
 import 'package:fitness_app/view/account/fields/height_weight.dart';
 import 'package:fitness_app/view/account/totals/totals.dart';

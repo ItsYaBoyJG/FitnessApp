@@ -36,7 +36,7 @@ class _GoalsFieldState extends ConsumerState<GoalsField> {
         setState(() {
           _isSelected = index;
         });
-        ref.read(userGoalStateProvider.notifier).state =
+        ref.read(userGoalProvider.notifier).state =
             _userInfoLists.getGoalsList()[index];
       },
     );

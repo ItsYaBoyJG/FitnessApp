@@ -56,27 +56,25 @@ class WeightResultContainer extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Current',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.blueGrey[200],
-                          ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Current',
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          color: Colors.blueGrey[200],
                         ),
-                        Text(
-                          '$currentWeight',
-                          style: const TextStyle(
-                            fontSize: 18.0,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w900,
-                          ),
+                      ),
+                      Text(
+                        '$currentWeight',
+                        style: const TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.black54,
+                          fontWeight: FontWeight.w900,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),

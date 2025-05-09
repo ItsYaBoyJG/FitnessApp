@@ -59,22 +59,22 @@ class WriteToDb {
     _firebaseFirestore.collection('users').doc(uId).delete();
   }
 
-  void addUserToFriendsList(String uId, String name) {
+  void addUserToFriendsList(String uId, String name, String friendId) {
     _firebaseFirestore
         .collection('friends')
         .doc(uId)
         .collection('friends')
-        .doc(name)
-        .set({});
+        .doc(friendId)
+        .set({'name': name, 'friendId': friendId});
   }
 
-  void addUserToFollowingList(String uId, String name) {
+  void addUserToFollowingList(String uId, String name, String friendId) {
     _firebaseFirestore
         .collection('friends')
         .doc(uId)
         .collection('following')
-        .doc(name)
-        .set({});
+        .doc(friendId)
+        .set({'name': name, 'friendId': friendId});
   }
 
   void saveDailyMacrosTotals(

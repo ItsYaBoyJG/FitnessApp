@@ -42,9 +42,7 @@ class _ResultsTabState extends ConsumerState<ResultsTab> {
         _health.getHealthConnectSdkStatus();
       } else {}
       _checkPermissions();
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   }
 
   void _requestPermissions() async {
@@ -81,9 +79,7 @@ class _ResultsTabState extends ConsumerState<ResultsTab> {
     if (await _health.hasPermissions([HealthDataType.STEPS]) == true) {
       try {
         steps = await _health.getTotalStepsInInterval(yesterday, now);
-      } catch (e) {
-        print(e);
-      }
+      } catch (e) {}
     } else {
       _requestPermissions();
     }
@@ -96,8 +92,8 @@ class _ResultsTabState extends ConsumerState<ResultsTab> {
   @override
   Widget build(BuildContext context) {
     final userProfileData =
-        ref.watch(userProfileDataProvider(_userAuth.getUserId()));
-    final goalData = ref.watch(userGoalDataProvider(_userAuth.getUserId()));
+        ref.watch(userProfileDataProvider(_userAuth.getUserId()!));
+    final goalData = ref.watch(userGoalDataProvider(_userAuth.getUserId()!));
     return goalData.when(
       data: (data) {
         if (data.data() != null && data.exists == true) {

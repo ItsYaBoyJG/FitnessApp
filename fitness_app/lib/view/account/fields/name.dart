@@ -31,8 +31,7 @@ class NameField extends HookConsumerWidget {
             ),
             onChanged: (value) {
               if (value != '' || value.length > 5) {
-                ref.read(userNameStateProvider.notifier).state =
-                    nameController.text;
+                ref.read(userNameProvider.notifier).state = nameController.text;
               } else {}
             },
           )

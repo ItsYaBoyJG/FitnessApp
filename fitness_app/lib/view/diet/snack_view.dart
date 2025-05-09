@@ -22,7 +22,7 @@ class _SnackTabViewState extends ConsumerState<SnackTabView> {
   Widget build(BuildContext context) {
     final date = ref.watch(dateTimeProvider);
     final item = ref.watch(snackItemStreamProvider(
-        DateIdEquatable(id: _userAuth.getUserId(), date: date)));
+        DateIdEquatable(id: _userAuth.getUserId()!, date: date)));
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.all(20.0),

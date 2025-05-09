@@ -36,7 +36,7 @@ class _GainWeightReasonsState extends ConsumerState<GainWeightReasons> {
           setState(() {
             _isSelected = index;
           });
-          ref.read(userGoalReasonStateProvider.notifier).state =
+          ref.read(userGoalReasonProvider.notifier).state =
               _userInfoLists.getGainWeightGoalReasons()[index];
         });
   }

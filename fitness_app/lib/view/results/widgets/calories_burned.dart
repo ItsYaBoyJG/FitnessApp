@@ -71,7 +71,7 @@ class _CaloriesBurnedState extends ConsumerState<CaloriesBurned> {
   @override
   Widget build(BuildContext context) {
     final exerciseData =
-        ref.watch(userExerciseDataProvider(_userAuth.getUserId()));
+        ref.watch(userExerciseDataProvider(_userAuth.getUserId()!));
     return exerciseData.when(data: (data) {
       if (data.docs.isNotEmpty) {
         final eData = data.docs.asMap();

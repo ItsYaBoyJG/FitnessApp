@@ -77,7 +77,7 @@ class _EditGoalDialogState extends State<EditGoalDialog> {
             child: const Text('Cancel')),
         OutlinedButton(
             onPressed: () {
-              _writeToDb.updateUserGoal(_userAuth.getUserId(), _newGoal);
+              _writeToDb.updateUserGoal(_userAuth.getUserId()!, _newGoal);
             },
             child: const Text('Make Changes'))
       ],

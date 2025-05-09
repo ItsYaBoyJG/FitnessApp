@@ -16,7 +16,7 @@ class GoalReasonsView extends ConsumerStatefulWidget {
 class _GoalReasonsViewState extends ConsumerState<GoalReasonsView> {
   @override
   Widget build(BuildContext context) {
-    final goal = ref.watch(userGoalStateProvider);
+    final goal = ref.watch(userGoalProvider);
     switch (goal) {
       case 'Lose Weight':
         return const LoseWeightGoalReason();

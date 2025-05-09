@@ -18,7 +18,7 @@ class SearchList extends ConsumerStatefulWidget {
 class _SearchListState extends ConsumerState<SearchList> {
   @override
   Widget build(BuildContext context) {
-    final selected = ref.watch(productSelectedBoolProvider);
+    final selected = ref.watch(productSelectedProvider);
 
     if (selected == false) {
       return SizedBox(
@@ -69,8 +69,7 @@ class _SearchListState extends ConsumerState<SearchList> {
                               : Container(),
                     ),
                     onTap: () {
-                      ref.read(productSelectedBoolProvider.notifier).state =
-                          true;
+                      ref.read(productSelectedProvider.notifier).state = true;
                       ref.read(selectedProductProvider.notifier).state = data;
                     },
                   ),

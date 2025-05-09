@@ -36,7 +36,7 @@ class _ActivityFieldState extends ConsumerState<ActivityField> {
         setState(() {
           _isSelected = index;
         });
-        ref.read(userActivityLevelStateProvider.notifier).state =
+        ref.read(userActivityLevelProvider.notifier).state =
             _userInfoLists.getActivityList()[index];
       },
     );

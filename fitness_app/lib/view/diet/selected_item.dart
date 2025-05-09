@@ -29,7 +29,7 @@ class _SelectedItemState extends ConsumerState<SelectedItem> {
                 right: MediaQuery.of(context).size.width * 0.045),
             child: IconButton(
                 onPressed: () {
-                  ref.read(productSelectedBoolProvider.notifier).state = false;
+                  ref.read(productSelectedProvider.notifier).state = false;
                 },
                 icon: const Icon(Icons.close)),
           ),

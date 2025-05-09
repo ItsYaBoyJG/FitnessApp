@@ -22,7 +22,7 @@ class _BreakfastTabViewState extends ConsumerState<BreakfastTabView> {
   Widget build(BuildContext context) {
     final date = ref.watch(dateTimeProvider);
     final item = ref.watch(breakfastItemStreamProvider(
-        DateIdEquatable(id: _userAuth.getUserId(), date: date)));
+        DateIdEquatable(id: _userAuth.getUserId()!, date: date)));
 
     return SingleChildScrollView(
       child: Container(

@@ -26,18 +26,18 @@ class _DailyTotalsSumPageState extends ConsumerState<DailyTotalsSumPage> {
 
   @override
   Widget build(BuildContext context) {
-    final calories = ref.watch(initialDailyCaloriesStateProvider);
-    final protein = ref.watch(initialDailyProteinStateProvider);
-    final carbs = ref.watch(initialDailyCarbsStateProvider);
-    final fat = ref.watch(initialDailyFatStateProvider);
-    final age = ref.watch(userAgeStateProvider);
-    final gender = ref.watch(userGenderStateProvider);
-    final activity = ref.watch(userActivityLevelStateProvider);
+    final calories = ref.watch(initialDailyCaloriesProvider);
+    final protein = ref.watch(initialDailyProteinProvider);
+    final carbs = ref.watch(initialDailyCarbsProvider);
+    final fat = ref.watch(initialDailyFatProvider);
+    final age = ref.watch(userAgeProvider);
+    final gender = ref.watch(userGenderProvider);
+    final activity = ref.watch(userActivityLevelProvider);
     final weight = ref.watch(userWeightValueProvider);
     final height = ref.watch(userCmHeightValueProvider);
-    final goal = ref.watch(userGoalStateProvider);
-    final goalReason = ref.watch(userGoalReasonStateProvider);
-    final name = ref.watch(userNameStateProvider);
+    final goal = ref.watch(userGoalProvider);
+    final goalReason = ref.watch(userGoalReasonProvider);
+    final name = ref.watch(userNameProvider);
 
     return Scaffold(
       appBar: AppBar(),
@@ -90,11 +90,11 @@ class _DailyTotalsSumPageState extends ConsumerState<DailyTotalsSumPage> {
         width: MediaQuery.of(context).size.width - 15,
         child: AppButton(
             onPressed: () {
-              _writeToDb.saveUser(_userAuth.getUserId());
+              _writeToDb.saveUser(_userAuth.getUserId()!);
               _writeToDb.saveDailyMacrosTotals(
-                  _userAuth.getUserId(), calories, protein, fat, carbs);
+                  _userAuth.getUserId()!, calories, protein, fat, carbs);
               _writeToDb.saveUserData(
-                  _userAuth.getUserId(),
+                  _userAuth.getUserId()!,
                   name,
                   age,
                   gender,

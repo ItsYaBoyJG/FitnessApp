@@ -19,14 +19,14 @@ class _CreationSummaryState extends ConsumerState<CreationSummary> {
 
   @override
   Widget build(BuildContext context) {
-    final ageValue = ref.watch(userAgeStateProvider);
-    final genderValue = ref.watch(userGenderStateProvider);
+    final ageValue = ref.watch(userAgeProvider);
+    final genderValue = ref.watch(userGenderProvider);
     final cmValue = ref.watch(userCmHeightValueProvider);
     final weightValue = ref.watch(userWeightValueProvider);
-    final activityLevel = ref.watch(userActivityLevelStateProvider);
-    final goalValue = ref.watch(userGoalStateProvider);
-    final reasonValue = ref.watch(userGoalReasonStateProvider);
-    final nameValue = ref.watch(userNameStateProvider);
+    final activityLevel = ref.watch(userActivityLevelProvider);
+    final goalValue = ref.watch(userGoalProvider);
+    final reasonValue = ref.watch(userGoalReasonProvider);
+    final nameValue = ref.watch(userNameProvider);
 
     return CreationSummaryContainer(
         name: nameValue,
@@ -53,18 +53,18 @@ class _CreationSummaryState extends ConsumerState<CreationSummary> {
           final carbs = _calculations.calculateDvCarbs(calories, goalValue);
 
           if (goalValue.startsWith('L')) {
-            ref.read(initialCarbsPercentageProvider.notifier).state = 40;
-            ref.read(initialProteinPercentageProvider.notifier).state = 40;
-            ref.read(initialFatPercentageProvider.notifier).state = 20;
+            ref.read(initialCarbsPercProvider.notifier).state = 40;
+            ref.read(initialProteinPercProvider.notifier).state = 40;
+            ref.read(initialFatPercProvider.notifier).state = 20;
           } else {
-            ref.read(initialCarbsPercentageProvider.notifier).state = 40;
-            ref.read(initialProteinPercentageProvider.notifier).state = 30;
-            ref.read(initialFatPercentageProvider.notifier).state = 30;
+            ref.read(initialCarbsPercProvider.notifier).state = 40;
+            ref.read(initialProteinPercProvider.notifier).state = 30;
+            ref.read(initialFatPercProvider.notifier).state = 30;
           }
-          ref.read(initialDailyProteinStateProvider.notifier).state = protein;
-          ref.read(initialDailyFatStateProvider.notifier).state = fat;
-          ref.read(initialDailyCarbsStateProvider.notifier).state = carbs;
-          ref.read(initialDailyCaloriesStateProvider.notifier).state = calories;
+          ref.read(initialDailyProteinProvider.notifier).state = protein;
+          ref.read(initialDailyFatProvider.notifier).state = fat;
+          ref.read(initialDailyCarbsProvider.notifier).state = carbs;
+          ref.read(initialDailyCaloriesProvider.notifier).state = calories;
 
           context.push('/dailytotals');
         },

@@ -25,7 +25,7 @@ class _DietTabState extends ConsumerState<DietTab> {
   @override
   Widget build(BuildContext context) {
     final macros =
-        ref.watch(userDailyMacroTotalsProvider(_userAuth.getUserId()));
+        ref.watch(userDailyMacroTotalsProvider(_userAuth.getUserId()!));
 
     return macros.when(data: (data) {
       if (data.exists && data.data() != null) {
@@ -96,7 +96,7 @@ class _DietTabState extends ConsumerState<DietTab> {
                           borderRadius: BorderRadius.circular(16.0),
                         ),
                         child: MacrosDisplay(
-                            uId: _userAuth.getUserId(),
+                            uId: _userAuth.getUserId()!,
                             totalCalories: macro['calories'],
                             totalProtein: macro['protein'],
                             totalFat: macro['fat'],

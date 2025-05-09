@@ -20,9 +20,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final userProfileData =
-        ref.watch(userProfileDataProvider(_userAuth.getUserId()));
+        ref.watch(userProfileDataProvider(_userAuth.getUserId()!));
     final savedRecipes =
-        ref.watch(userSavedRecipesProvider(_userAuth.getUserId()));
+        ref.watch(userSavedRecipesProvider(_userAuth.getUserId()!));
     return userProfileData.when(data: (data) {
       if (data.data() != null &&
           data.exists == true &&

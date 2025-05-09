@@ -23,7 +23,7 @@ class AgeField extends HookConsumerWidget {
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(4.0)),
         ),
         onChanged: (v) {
-          ref.read(userAgeStateProvider.notifier).state = int.parse(v);
+          ref.read(userAgeProvider.notifier).state = int.parse(v);
         },
       ),
     );

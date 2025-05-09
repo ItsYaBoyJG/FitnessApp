@@ -38,7 +38,7 @@ class _GenderFieldState extends ConsumerState<GenderField> {
                 setState(() {
                   _isSelected = index;
                 });
-                ref.read(userGenderStateProvider.notifier).state =
+                ref.read(userGenderProvider.notifier).state =
                     _userInfoLists.getGenderList()[index];
               },
             );

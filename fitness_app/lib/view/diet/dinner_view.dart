@@ -23,7 +23,7 @@ class _DinnerTabViewState extends ConsumerState<DinnerTabView> {
   Widget build(BuildContext context) {
     final date = ref.watch(dateTimeProvider);
     final item = ref.watch(dinnerItemStreamProvider(
-        DateIdEquatable(id: _userAuth.getUserId(), date: date)));
+        DateIdEquatable(id: _userAuth.getUserId()!, date: date)));
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.all(20.0),

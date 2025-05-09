@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class UserAuth {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  String getUserId() {
+  String? getUserId() {
     return _firebaseAuth.currentUser!.uid;
   }
 

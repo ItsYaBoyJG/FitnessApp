@@ -29,7 +29,7 @@ class _AddItemButtonState extends ConsumerState<AddItemButton> {
     final date = ref.watch(dateTimeProvider);
     final product = ref.watch(selectedProductProvider);
     final macros = ref.watch(dailyMacroAmountsStreamProvider(
-        DateIdEquatable(id: _userAuth.getUserId(), date: date)));
+        DateIdEquatable(id: _userAuth.getUserId()!, date: date)));
     final countController = useTextEditingController();
 
     return macros.when(data: (data) {
@@ -107,7 +107,7 @@ class _AddItemButtonState extends ConsumerState<AddItemButton> {
 
                                     ///save meal item
                                     _writeToDb.saveMealItem(
-                                        uId,
+                                        uId!,
                                         date,
                                         product.productName!,
                                         int.parse(countController.text),
@@ -210,7 +210,7 @@ class _AddItemButtonState extends ConsumerState<AddItemButton> {
 
                                     ///save meal item
                                     _writeToDb.saveMealItem(
-                                        uId,
+                                        uId!,
                                         date,
                                         product.productName!,
                                         int.parse(countController.text),
