@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class CarbsValue extends StatelessWidget {
-  const CarbsValue({super.key, required this.value});
-
+class MarcoValWidget extends StatelessWidget {
+  const MarcoValWidget({super.key, required this.macro, required this.value});
+  final String macro;
   final int value;
 
   @override
@@ -12,10 +12,10 @@ class CarbsValue extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.30,
       child: Column(
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text('Carbs'),
+              Text(macro),
             ],
           ),
           SizedBox(

@@ -29,8 +29,15 @@ class ImageCardWithInternal extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           borderRadius: const BorderRadius.all(
-            Radius.circular(15.0),
+            Radius.circular(16.0),
           ),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black38,
+              blurRadius: 10.0,
+              offset: Offset(0, 5),
+            ),
+          ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

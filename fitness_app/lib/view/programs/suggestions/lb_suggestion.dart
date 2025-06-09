@@ -20,7 +20,8 @@ class _LowerBodySuggestionsState extends ConsumerState<LowerBodySuggestions> {
     return lbPrograms.when(data: (data) {
       if (data.exists && data.data()!.isNotEmpty) {
         return Section(
-          title: 'Lower Body Workouts',
+          title: '' //'Lower Body Workouts'
+          ,
           itemCount: data.data()!.length,
           itemBuilder: (context, index) {
             return ImageCardWithInternal(

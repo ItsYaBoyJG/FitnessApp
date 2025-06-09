@@ -31,25 +31,20 @@ class WValueContainer extends StatelessWidget {
             width: textBoxWidth,
             child: const Text('How much do you weight? (kgs)'),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                height: 50,
-                width: 150,
-                child: TextField(
-                  controller: controller,
-                  onChanged: onChanged,
-                  decoration: InputDecoration(
-                    labelText: labelText,
-                    contentPadding:
-                        const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(3.0)),
-                  ),
-                ),
-              )
-            ],
+          SizedBox(
+            height: 50,
+            width: 100,
+            child: TextField(
+              controller: controller,
+              onChanged: onChanged,
+              decoration: InputDecoration(
+                labelText: labelText,
+                contentPadding:
+                    const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(3.0)),
+              ),
+            ),
           )
         ],
       ),

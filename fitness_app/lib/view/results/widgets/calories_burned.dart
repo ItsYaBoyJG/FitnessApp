@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:health/health.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class CaloriesBurned extends ConsumerStatefulWidget {
   const CaloriesBurned({super.key, required this.caloriesGoal});
@@ -154,20 +153,20 @@ class _CaloriesBurnedState extends ConsumerState<CaloriesBurned> {
                   }).toList(),
                 ),
               ),
-              SizedBox(
-                height: 250,
-                width: 250,
-                child: SfSparkLineChart.custom(
-                  trackball: const SparkChartTrackball(
-                      activationMode: SparkChartActivationMode.tap),
-                  marker: const SparkChartMarker(
-                      displayMode: SparkChartMarkerDisplayMode.all),
-                  labelDisplayMode: SparkChartLabelDisplayMode.all,
-                  xValueMapper: (index) => chartData[index].dateTime,
-                  yValueMapper: (index) => chartData[index].weight,
-                  dataCount: data.docs.length,
-                ),
-              ),
+              // SizedBox(
+              //   height: 250,
+              //   width: 250,
+              //   child: SfSparkLineChart.custom(
+              //     trackball: const SparkChartTrackball(
+              //         activationMode: SparkChartActivationMode.tap),
+              //     marker: const SparkChartMarker(
+              //         displayMode: SparkChartMarkerDisplayMode.all),
+              //     labelDisplayMode: SparkChartLabelDisplayMode.all,
+              //     xValueMapper: (index) => chartData[index].dateTime,
+              //     yValueMapper: (index) => chartData[index].weight,
+              //     dataCount: data.docs.length,
+              //   ),
+              // ),
             ],
           ),
         );

@@ -13,7 +13,7 @@ class UserPhoto extends StatelessWidget {
       child: GestureDetector(
         child: CircleAvatar(
           foregroundImage: AssetImage(image),
-          radius: 25,
+          radius: 20,
         ),
         onTap: () {
           context.push('/profile');

@@ -21,7 +21,8 @@ class _CardioSuggestionsState extends ConsumerState<CardioSuggestions> {
       if (data.exists && data.data()!.isNotEmpty) {
         Map<String, dynamic> cData = data.data() as Map<String, dynamic>;
         return Section(
-          title: 'Suggested Cardio Workouts',
+          title: '' //'Suggested Cardio Workouts'
+          ,
           itemCount: data.data()!.length,
           itemBuilder: (context, index) {
             return ImageCardWithInternal(

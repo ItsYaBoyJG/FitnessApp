@@ -42,6 +42,5 @@ class HomeDisplay extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

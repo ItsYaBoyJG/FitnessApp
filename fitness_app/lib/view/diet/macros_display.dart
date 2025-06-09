@@ -26,38 +26,34 @@ class MacrosDisplay extends ConsumerWidget {
         dailyMacroAmountsStreamProvider(DateIdEquatable(id: uId, date: date)));
 
     return dayAmounts.when(data: (data) {
-      if (data.data() != null || data.exists == true) {
-        Map<String, dynamic> dailyValues = data.data() as Map<String, dynamic>;
+      if (data.data() == null || data.exists == false) {
+        //    Map<String, dynamic> dailyValues = data.data() as Map<String, dynamic>;
         return Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            Column(
+              children: [Text(''), Text('Target: '), Text('Today: ')],
+            ),
             Column(
               children: [
                 const Text('Calories'),
                 Text('$totalCalories'),
-                Text('${dailyValues['calories']}')
+                Text('440')
               ],
             ),
             Column(
               children: [
                 const Text('Protein'),
                 Text('$totalProtein'),
-                Text('${dailyValues['protein']}')
+                Text('22')
               ],
             ),
             Column(
-              children: [
-                const Text('Fat'),
-                Text('$totalFat'),
-                Text('${dailyValues['fat']}')
-              ],
+              children: [const Text('Fat'), Text('$totalFat'), Text('27')],
             ),
             Column(
-              children: [
-                const Text('Carbs'),
-                Text('$totalCarbs'),
-                Text('${dailyValues['carbs']}')
-              ],
+              children: [const Text('Carbs'), Text('$totalCarbs'), Text('32')],
             ),
           ],
         );

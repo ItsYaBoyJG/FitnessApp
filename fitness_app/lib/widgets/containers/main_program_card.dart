@@ -35,8 +35,8 @@ class MainProgramCard extends StatelessWidget {
         boxShadow: const [
           BoxShadow(
             color: Colors.black38,
-            blurRadius: 25.0,
-            offset: Offset(8.0, 8.0),
+            blurRadius: 10.0,
+            offset: Offset(0, 5),
           ),
         ],
       ),

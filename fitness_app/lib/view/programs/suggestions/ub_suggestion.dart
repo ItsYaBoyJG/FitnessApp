@@ -20,7 +20,8 @@ class _UpperBodySuggestionsState extends ConsumerState<UpperBodySuggestions> {
     return ubPrograms.when(data: (data) {
       if (data.exists && data.data()!.isNotEmpty) {
         return Section(
-          title: 'Upper Body Workouts',
+          title: '' // 'Upper Body Workouts'
+          ,
           itemCount: data.data()!.length,
           itemBuilder: (context, index) {
             return ImageCardWithInternal(

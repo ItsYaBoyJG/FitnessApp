@@ -19,7 +19,7 @@ class _HomeState extends ConsumerState<Home> {
     final hasAccount = ref.watch(hasAccountProvider);
 
     return hasAccount.when(data: (data) {
-      if (data != null) {
+      if (data == null) {
         return const HomeDisplay();
       } else {
         return const AddProfileInfo();

@@ -11,20 +11,36 @@ class AgeField extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final ageController = useTextEditingController();
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.25,
-      width: MediaQuery.of(context).size.width - 25,
-      child: TextFormField(
-        controller: ageController,
-        maxLength: 3,
-        maxLengthEnforcement: MaxLengthEnforcement.enforced,
-        decoration: InputDecoration(
-          hintText: 'Age',
-          contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(4.0)),
-        ),
-        onChanged: (v) {
-          ref.read(userAgeProvider.notifier).state = int.parse(v);
-        },
+      height: MediaQuery.of(context).size.height * 0.15,
+      width: MediaQuery.of(context).size.width * 0.90,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SizedBox(
+              height: 20,
+              width: MediaQuery.of(context).size.width - 45,
+              child: const Text(
+                'How old are you?',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          TextFormField(
+            controller: ageController,
+            maxLength: 3,
+            maxLengthEnforcement: MaxLengthEnforcement.enforced,
+            decoration: InputDecoration(
+              hintText: 'Age',
+              contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(4.0)),
+            ),
+            onChanged: (v) {
+              ref.read(userAgeProvider.notifier).state = int.parse(v);
+            },
+          ),
+        ],
       ),
     );
   }

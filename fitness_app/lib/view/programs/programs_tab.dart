@@ -30,6 +30,7 @@ class _ProgramsTabState extends State<ProgramsTab> {
                     image: 'assets/images/owl.jpg',
                   ),
                 ),
+                Text('Recommended for you'),
                 MainSuggestion(),
                 CardioSuggestions(),
                 LowerBodySuggestions(),

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:fitness_app/view/account/age_gender_name_view.dart';
+import 'package:fitness_app/view/account/age_gender_name_hw.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:health/health.dart';

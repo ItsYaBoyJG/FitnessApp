@@ -9,6 +9,7 @@ import 'package:fitness_app/view/diet/snack_view.dart';
 import 'package:fitness_app/widgets/containers/header.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:fitness_app/widgets/account/user_photo.dart';
 
 class DietTab extends ConsumerStatefulWidget {
   const DietTab({super.key});
@@ -39,16 +40,9 @@ class _DietTabState extends ConsumerState<DietTab> {
                   appBar: AppBar(
                     elevation: 0,
                     backgroundColor: Colors.white,
-                    flexibleSpace: Header(
-                      rightSide: Container(
-                        height: 35.0,
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        margin: const EdgeInsets.only(right: 20.0),
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(100, 140, 255, 1.0),
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Container(),
+                    flexibleSpace: const Header(
+                      rightSide: UserPhoto(
+                        image: 'assets/images/owl.jpg',
                       ),
                       title: 'Daily Diet',
                     ),

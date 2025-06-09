@@ -1,12 +1,10 @@
 import 'package:fitness_app/data/auth/user_auth.dart';
+import 'package:fitness_app/data/local/local_storage.dart';
 import 'package:fitness_app/data/writes/write_to_db.dart';
 import 'package:fitness_app/providers/future_providers.dart';
 import 'package:fitness_app/providers/state_providers.dart';
-import 'package:fitness_app/view/account/widgets/values/calories.dart';
-import 'package:fitness_app/view/account/widgets/values/carbs.dart';
-import 'package:fitness_app/view/account/widgets/values/fat.dart';
-import 'package:fitness_app/view/account/widgets/values/protein.dart';
 import 'package:fitness_app/widgets/buttons/app_button.dart';
+import 'package:fitness_app/widgets/containers/macro_val.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -23,6 +21,7 @@ class DailyTotalsSumPage extends ConsumerStatefulWidget {
 class _DailyTotalsSumPageState extends ConsumerState<DailyTotalsSumPage> {
   final WriteToDb _writeToDb = WriteToDb();
   final UserAuth _userAuth = UserAuth();
+  final LocalStorage _localStorage = LocalStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -49,34 +48,45 @@ class _DailyTotalsSumPageState extends ConsumerState<DailyTotalsSumPage> {
           child: Column(
             //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                SizedBox(
-                  height: 40,
-                  width: MediaQuery.of(context).size.width - 30,
-                  child: const Text(
-                    'If you wish to make any changes. Either go back, or '
-                    'select the Edit button next to each below by each to change it.',
-                    overflow: TextOverflow.clip,
-                  ),
-                )
-              ]),
-              Padding(
-                padding: const EdgeInsets.only(top: 40.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CaloriesValue(value: calories),
-                    ProteinValue(value: protein),
-                  ],
+              Container(
+                height: 70,
+                width: MediaQuery.of(context).size.width * 0.70,
+                padding: const EdgeInsets.all(6.0),
+                child: const Text(
+                  'Below you can find your calculated daily macro values that we recommend.',
+                  overflow: TextOverflow.clip,
                 ),
+              ),
+              Container(
+                height: 85,
+                width: MediaQuery.of(context).size.width * 0.70,
+                padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
+                child: const Text(
+                  'If you wish to make any changes. Either go back, or '
+                  'select the Edit button next to each below by each to change it.',
+                  overflow: TextOverflow.clip,
+                ),
+              ),
+              Center(
+                child: AppButton(onPressed: () {}, text: 'Edit'),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 40.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    FatValue(value: fat),
-                    CarbsValue(value: carbs),
+                    MarcoValWidget(macro: 'Calories', value: calories),
+                    MarcoValWidget(macro: 'Protein', value: protein),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    MarcoValWidget(macro: 'Fat', value: fat),
+                    MarcoValWidget(macro: 'Carbs', value: carbs),
                   ],
                 ),
               ),
@@ -106,7 +116,10 @@ class _DailyTotalsSumPageState extends ConsumerState<DailyTotalsSumPage> {
                   DateTime.now(),
                   null);
 
+              _localStorage.createdAccount(true);
+
               ref.invalidate(userDailyMacroTotalsProvider);
+              ref.invalidate(hasAccountProvider);
               // ref.invalidate(userProfileData);
               Future.delayed(const Duration(milliseconds: 200));
               context.go('/');
