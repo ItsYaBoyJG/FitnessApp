@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: library_private_types_in_public_api
-
 part of 'local_storage.dart';
 
 // **************************************************************************
@@ -18,9 +16,7 @@ class CreateAccountAdapter extends TypeAdapter<_CreateAccount> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return _CreateAccount(
-      accountCreated: fields[0] as bool,
-    );
+    return _CreateAccount(accountCreated: fields[0] as bool);
   }
 
   @override

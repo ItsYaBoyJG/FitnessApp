@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitness_app/data/auth/user_auth.dart';
-import 'package:fitness_app/utils/theme.dart';
+import 'package:fitness_app/shared/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

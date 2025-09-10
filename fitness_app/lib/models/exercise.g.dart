@@ -7,13 +7,13 @@ part of 'exercise.dart';
 // **************************************************************************
 
 Exercise _$ExerciseFromJson(Map<String, dynamic> json) => Exercise(
-      uid: json['uid'] as String,
-      date: json['date'] as String,
-      caloriesBurned: (json['caloriesBurned'] as num).toInt(),
-    );
+  uid: json['uid'] as String,
+  date: json['date'] as String,
+  caloriesBurned: (json['caloriesBurned'] as num).toInt(),
+);
 
 Map<String, dynamic> _$ExerciseToJson(Exercise instance) => <String, dynamic>{
-      'uid': instance.uid,
-      'date': instance.date,
-      'caloriesBurned': instance.caloriesBurned,
-    };
+  'uid': instance.uid,
+  'date': instance.date,
+  'caloriesBurned': instance.caloriesBurned,
+};

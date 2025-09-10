@@ -1,48 +1,194 @@
-# A Goal Tracking and Nutrition Tracking Mobile Application
- - An on going project demonstrating how a fitness app can be made with Flutter.
- - Using Firebase ([Cloud Firestore](https://pub.dev/packages/cloud_firestore), [Firebase Auth](https://pub.dev/packages/firebase_auth)), [Riverpod](https://pub.dev/packages/riverpod), [Open Food Facts](https://pub.dev/packages/openfoodfacts), and [Health](https://pub.dev/packages/health)
+# FitnessApp - Complete Health & Nutrition Tracker
 
+A comprehensive Flutter mobile application for fitness enthusiasts to track their nutrition, workouts, goals, and health metrics. Built with modern architecture principles and leveraging Firebase for backend services.
 
-Diet Tab:[Image](https://github.com/ItsYaBoyJG/FitnessApp/tree/main/images/diet_tab.png) 
+## 🏗️ Architecture
 
-[Image](https://github.com/ItsYaBoyJG/FitnessApp/tree/main/images/adding_items.png) 
+This app follows **Clean Architecture** principles with feature-based organization:
 
-[Image](https://github.com/ItsYaBoyJG/FitnessApp/tree/main/images/selected_items.png) 
+- **State Management**: Hooks Riverpod + Flutter Hooks
+- **Backend**: Firebase (Firestore, Auth) 
+- **Local Storage**: Hive for offline persistence
+- **Nutrition Data**: OpenFoodFacts API integration
+- **Health Integration**: Health package for device health data
+- **Error Handling**: FpDart with Either type for functional programming
+- **Navigation**: GoRouter for declarative routing
 
-Results Tab: [Image](https://github.com/ItsYaBoyJG/FitnessApp/tree/main/images/results_tab.png) 
+## 📱 App Screenshots
 
+### Daily Diet Tracking
+Track your daily nutrition with detailed macro breakdowns and calendar-based meal planning.
 
-# Current Features:
- - Nutrition Tracking Page
-[found here](https://github.com/ItsYaBoyJG/FitnessApp/blob/main/fitness_app/lib/views/diet/diet_tab.dart).
-   - Allows users to add meal items for breakfast, lunch and dinner categories, and a daily snack category.
-   - Tracks daily macronutrients, and the macronutrients from each added item.
+![Diet Tab](images/diet_tab.png)
 
- - Goal/Results Tracking Page 
- [found here](https://github.com/ItsYaBoyJG/FitnessApp/blob/main/fitness_app/lib/views/results/results_tab.dart).
-   - Users can view current goal, flucuations in their weight.
-   - Display calories burned. 
+### Food Search & Selection
+Search and add food items with detailed nutritional information from OpenFoodFacts database.
 
- - Workout Program Page
- [found here](https://github.com/ItsYaBoyJG/FitnessApp/blob/main/fitness_app/lib/views/programs/programs_tab.dart).
-   - Suggested Workout Programs
-   - Cardio workouts, lower body and upper body workouts.
-   
+![Adding Items](images/adding_items.png)
+![Selected Item](images/selected_item.png)
 
- - Profile Page
- [found here](https://github.com/ItsYaBoyJG/FitnessApp/blob/main/fitness_app/lib/views/profile/profile.dart).
-   - Users can view saved recipes and previous goals.
-  
+### Results & Progress Tracking
+Monitor your progress with weight tracking charts and calorie burn analysis.
 
-## Upcoming Additions and Improvements:
- - [] Adding a friends list and following feature for users.
- - [] Allow users to sync health data, using the Health package, from their devices instead of needing to enter it manually.
- - [] Create a more customized line chart to display user data beyond just weight changes. Data like flucuation of daily macronutrients and micronutrients.
- - [] Add more depth to Profile page and create a public profile to share with their friends or followers.
- - [] Implement Firebase Storage to allow users to add photos.
+![Results Tab](images/results_tab.png)
 
+## ✨ Current Features
 
-## Features being currently worked on:
-  
+### 🍽️ Nutrition Tracking
+- **Daily meal planning** with breakfast, lunch, dinner, and snacks
+- **Macro tracking** (calories, protein, fat, carbs) with real-time calculations
+- **Calendar integration** for viewing historical nutrition data
+- **Food database search** powered by OpenFoodFacts API
+- **Serving size adjustments** with automatic macro recalculation
 
+### 📊 Progress & Results
+- **Weight tracking** with visual line charts showing fluctuations over time
+- **Calorie burn monitoring** with goal vs actual comparisons
+- **Progress visualization** with interactive charts
+- **Goal setting and tracking** with customizable targets
 
+### 🏋️ Workout Programs
+- **Pre-built workout programs** for different fitness levels
+- **Exercise categorization**: Cardio, Upper Body, Lower Body
+- **Workout suggestions** based on user preferences
+- **Exercise tracking** and progress monitoring
+
+### 👤 Profile Management  
+- **User authentication** with Firebase Auth (email/password)
+- **Personal goal management** and history
+- **Saved recipes** for quick meal logging
+- **User preferences** and settings
+
+### 📱 Additional Features
+- **Comprehensive onboarding** flow for new users
+- **Responsive UI** with modern design patterns
+- **Offline support** with Hive local storage
+- **Device health integration** capabilities
+- **Camera integration** for future photo features
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Flutter SDK ^3.9.0
+- Firebase project setup
+- iOS/Android development environment
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/ItsYaBoyJG/FitnessApp.git
+   cd FitnessApp/fitness_app
+   ```
+
+2. **Install dependencies**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Generate code for models**
+   ```bash
+   flutter packages pub run build_runner build --delete-conflicting-outputs
+   ```
+
+4. **Run the app**
+   ```bash
+   flutter run
+   ```
+
+### Development Commands
+```bash
+# Install dependencies
+flutter pub get
+
+# Code generation (run after model changes)
+flutter packages pub run build_runner build
+
+# Run app on specific device
+flutter run -d <device-id>
+
+# Build for production
+flutter build apk          # Android
+flutter build ios          # iOS
+
+# Testing and analysis
+flutter test               # Run tests
+flutter analyze           # Static analysis
+flutter clean             # Clean build artifacts
+```
+
+## 🏗️ Project Structure
+
+The app follows Clean Architecture with clear separation of concerns:
+
+```
+lib/
+├── core/                  # Core functionality
+│   ├── constants/         # App-wide constants
+│   ├── errors/           # Error handling
+│   ├── network/          # Network utilities
+│   ├── providers/        # Dependency injection
+│   └── usecases/         # Base use case interface
+├── features/             # Feature modules
+│   ├── authentication/   # User auth (Clean Architecture)
+│   ├── nutrition/        # Nutrition tracking
+│   ├── workout/          # Exercise tracking
+│   └── profile/          # User profile
+├── shared/               # Shared components
+│   ├── themes/           # App theming
+│   └── widgets/          # Reusable widgets
+└── view/ (legacy)        # Legacy UI components
+```
+
+## 🔧 Technologies Used
+
+- **Flutter** - Cross-platform mobile development
+- **Hooks Riverpod** - State management and dependency injection
+- **Firebase Firestore** - Cloud database
+- **Firebase Auth** - User authentication  
+- **Hive** - Local storage and offline support
+- **OpenFoodFacts API** - Nutrition database
+- **Health Package** - Device health data integration
+- **GoRouter** - Declarative navigation
+- **FL Chart** - Data visualization
+- **FpDart** - Functional programming utilities
+
+## 🚧 Development Status
+
+### ✅ Completed Features
+- Complete nutrition tracking with macro calculations
+- Weight and progress tracking with charts  
+- User authentication and profile management
+- Food database integration with search
+- Workout program suggestions
+- Clean architecture foundation
+- Offline data persistence
+
+### 🔄 In Progress
+- Migration from legacy views to Clean Architecture
+- Enhanced workout tracking with exercise logging
+- Improved error handling and user feedback
+- Performance optimizations
+
+### 📋 Upcoming Features
+- [ ] Social features (friends list, following)
+- [ ] Automatic health data sync from device sensors
+- [ ] Advanced chart customization for macro/micro nutrients
+- [ ] Enhanced profile with public sharing capabilities
+- [ ] Photo integration with Firebase Storage
+- [ ] Meal planning and recipe recommendations
+- [ ] Workout routine customization
+- [ ] Achievement system and badges
+- [ ] Export data functionality
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+*This is an ongoing project showcasing modern Flutter development practices with Clean Architecture, state management, and Firebase integration.*

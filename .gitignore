@@ -4,3 +4,5 @@ fitness_app/android/app/google-services.json
 fitness_app/macos/Runner/GoogleService-Info.plist
 fitness_app/firebase.json
 fitness_app/lib/firebase_options.dart
+CLAUDE.md
+fitness_app/macos/Flutter/ephemeral/flutter_export_environment.sh

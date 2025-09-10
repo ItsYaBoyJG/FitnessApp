@@ -7,15 +7,15 @@ part of 'workout_plan.dart';
 // **************************************************************************
 
 WorkoutPlan _$WorkoutPlanFromJson(Map<String, dynamic> json) => WorkoutPlan(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String,
-      duration: (json['duration'] as num).toInt(),
-      exercises: (json['exercises'] as List<dynamic>)
-          .map((e) => WorkoutComponent.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      image: json['image'] as String,
-    );
+  id: json['id'] as String,
+  title: json['title'] as String,
+  description: json['description'] as String,
+  duration: (json['duration'] as num).toInt(),
+  exercises: (json['exercises'] as List<dynamic>)
+      .map((e) => WorkoutComponent.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  image: json['image'] as String,
+);
 
 Map<String, dynamic> _$WorkoutPlanToJson(WorkoutPlan instance) =>
     <String, dynamic>{
